@@ -12,7 +12,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -42,21 +42,25 @@
           <span class="text-xl font-extrabold tracking-tight">Auto Bazar</span>
         </a>
         <nav class="hidden md:flex items-center gap-8">
-          <a href="/" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">Home</a>
-          <a href="privacy.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">Privacy</a>
-          <a href="terms.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">Terms</a>
-          <a href="support.html" class="text-sm font-medium text-emerald-600">Support</a>
+          <a href="/" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+          <a href="privacy.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors"><span class="lang-en">Privacy</span><span class="lang-ar">سياسة الخصوصية</span></a>
+          <a href="terms.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors"><span class="lang-en">Terms</span><span class="lang-ar">شروط الاستخدام</span></a>
+          <a href="support.html" class="text-sm font-medium text-emerald-600"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
+          <button onclick="toggleLang()" class="lang-toggle px-3 py-1.5 bg-emerald-600 text-white rounded-full text-sm font-semibold hover:bg-emerald-700 transition"></button>
         </nav>
-        <button class="hamburger md:hidden flex flex-col gap-1.5 p-2 text-gray-700" onclick="toggleMenu()" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="flex md:hidden items-center gap-2">
+          <button onclick="toggleLang()" class="lang-toggle px-3 py-1.5 bg-emerald-600 text-white rounded-full text-sm font-semibold hover:bg-emerald-700 transition"></button>
+          <button class="hamburger flex flex-col gap-1.5 p-2 text-gray-700" onclick="toggleMenu()" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
       <div class="mobile-menu md:hidden">
         <nav class="flex flex-col py-4 border-t border-gray-100">
-          <a href="/" class="py-2.5 text-sm font-medium text-gray-600">Home</a>
-          <a href="privacy.html" class="py-2.5 text-sm font-medium text-gray-600">Privacy</a>
-          <a href="terms.html" class="py-2.5 text-sm font-medium text-gray-600">Terms</a>
-          <a href="support.html" class="py-2.5 text-sm font-medium text-emerald-600">Support</a>
+          <a href="/" class="py-2.5 text-sm font-medium text-gray-600"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+          <a href="privacy.html" class="py-2.5 text-sm font-medium text-gray-600"><span class="lang-en">Privacy</span><span class="lang-ar">سياسة الخصوصية</span></a>
+          <a href="terms.html" class="py-2.5 text-sm font-medium text-gray-600"><span class="lang-en">Terms</span><span class="lang-ar">شروط الاستخدام</span></a>
+          <a href="support.html" class="py-2.5 text-sm font-medium text-emerald-600"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
         </nav>
       </div>
     </div>
@@ -65,8 +69,12 @@
   <!-- Page Header -->
   <section class="bg-gradient-to-br from-emerald-600 to-emerald-800 pt-28 pb-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Support Center</h1>
-      <p class="text-emerald-100 text-lg">How can we help you?</p>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+        <span class="lang-en">Support Center</span><span class="lang-ar">الدعم والمساعدة</span>
+      </h1>
+      <p class="text-emerald-100 text-lg">
+        <span class="lang-en">How can we help you?</span><span class="lang-ar">كيف يمكننا مساعدتك؟</span>
+      </p>
     </div>
   </section>
 
@@ -77,13 +85,21 @@
         <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-5">
           <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
         </div>
-        <h2 class="text-xl font-bold mb-2">Contact Us</h2>
-        <p class="text-gray-500 mb-4">Have a question or need help? Reach out to our support team.</p>
+        <h2 class="text-xl font-bold mb-2">
+          <span class="lang-en">Contact Us</span><span class="lang-ar">تواصل معنا</span>
+        </h2>
+        <p class="text-gray-500 mb-4">
+          <span class="lang-en">Have a question or need help? Reach out to our support team.</span>
+          <span class="lang-ar">هل لديك سؤال أو تحتاج مساعدة؟ تواصل مع فريق الدعم لدينا.</span>
+        </p>
         <a href="mailto:support@autobazarsyria.com" class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold text-lg transition-colors">
           support@autobazarsyria.com
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
         </a>
-        <p class="text-gray-400 text-sm mt-3">We typically respond within 24 hours.</p>
+        <p class="text-gray-400 text-sm mt-3">
+          <span class="lang-en">We typically respond within 24 hours.</span>
+          <span class="lang-ar">نرد عادةً خلال 24 ساعة.</span>
+        </p>
       </div>
     </div>
   </section>
@@ -91,19 +107,25 @@
   <!-- FAQ Section -->
   <section class="py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-center mb-12">Frequently Asked Questions</h2>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-center mb-12">
+        <span class="lang-en">Frequently Asked Questions</span>
+        <span class="lang-ar">الأسئلة الشائعة</span>
+      </h2>
 
       <div class="space-y-3" id="faq">
         <!-- FAQ 1 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">How do I create an account?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">How do I create an account?</span>
+              <span class="lang-ar">كيف أنشئ حساباً؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">Download the Auto Bazar app from the App Store or Google Play. Open the app and tap "Sign Up." Enter your name, email address, and create a password. You will receive a verification email. Tap the link in the email to confirm your account, and you are ready to go.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">قم بتحميل تطبيق أوتو بازار من App Store أو Google Play. افتح التطبيق واضغط على "إنشاء حساب". أدخل اسمك وبريدك الإلكتروني وأنشئ كلمة مرور. ستتلقى رسالة تحقق بالبريد الإلكتروني. اضغط على الرابط في الرسالة لتأكيد حسابك، وستكون جاهزاً للبدء.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">Download the Auto Bazar app from the App Store or Google Play. Open the app and tap "Sign Up." Enter your name, email address, and create a password. You will receive a verification email. Tap the link in the email to confirm your account, and you are ready to go.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">قم بتحميل تطبيق أوتو بازار من App Store أو Google Play. افتح التطبيق واضغط على "إنشاء حساب". أدخل اسمك وبريدك الإلكتروني وأنشئ كلمة مرور. ستتلقى رسالة تحقق بالبريد الإلكتروني. اضغط على الرابط في الرسالة لتأكيد حسابك، وستكون جاهزاً للبدء.</p>
             </div>
           </div>
         </div>
@@ -111,13 +133,16 @@
         <!-- FAQ 2 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">How do I list my car?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">How do I list my car?</span>
+              <span class="lang-ar">كيف أعلن عن سيارتي؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">After creating an account, tap the "+" button on the main screen. Fill in the details about your car, including make, model, year, mileage, condition, price, and your city. Add clear photos of your car from multiple angles. Review the details and tap "Publish" to make your listing visible to all users.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">بعد إنشاء حسابك، اضغط على زر "+" في الشاشة الرئيسية. املأ تفاصيل سيارتك، بما في ذلك الشركة المصنّعة والطراز والسنة والمسافة المقطوعة والحالة والسعر ومدينتك. أضف صوراً واضحة لسيارتك من زوايا متعددة. راجع التفاصيل واضغط "نشر" لجعل إعلانك مرئياً لجميع المستخدمين.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">After creating an account, tap the "+" button on the main screen. Fill in the details about your car, including make, model, year, mileage, condition, price, and your city. Add clear photos of your car from multiple angles. Review the details and tap "Publish" to make your listing visible to all users.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">بعد إنشاء حسابك، اضغط على زر "+" في الشاشة الرئيسية. املأ تفاصيل سيارتك، بما في ذلك الشركة المصنّعة والطراز والسنة والمسافة المقطوعة والحالة والسعر ومدينتك. أضف صوراً واضحة لسيارتك من زوايا متعددة. راجع التفاصيل واضغط "نشر" لجعل إعلانك مرئياً لجميع المستخدمين.</p>
             </div>
           </div>
         </div>
@@ -125,13 +150,16 @@
         <!-- FAQ 3 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">Is Auto Bazar free?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">Is Auto Bazar free?</span>
+              <span class="lang-ar">هل أوتو بازار مجاني؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">Yes, the basic features of Auto Bazar are completely free. You can browse all car listings, search and filter cars, and create a limited number of your own listings at no cost. For additional features such as premium listing visibility, extra listing slots, and highlighted ads, we offer affordable subscription plans.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">نعم، الميزات الأساسية في أوتو بازار مجانية تماماً. يمكنك تصفح جميع إعلانات السيارات والبحث والتصفية وإنشاء عدد محدود من إعلاناتك الخاصة دون أي تكلفة. للحصول على ميزات إضافية مثل الظهور المميز للإعلانات وخانات إعلانات إضافية وإعلانات مميزة، نقدم خطط اشتراك بأسعار معقولة.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">Yes, the basic features of Auto Bazar are completely free. You can browse all car listings, search and filter cars, and create a limited number of your own listings at no cost. For additional features such as premium listing visibility, extra listing slots, and highlighted ads, we offer affordable subscription plans.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">نعم، الميزات الأساسية في أوتو بازار مجانية تماماً. يمكنك تصفح جميع إعلانات السيارات والبحث والتصفية وإنشاء عدد محدود من إعلاناتك الخاصة دون أي تكلفة. للحصول على ميزات إضافية مثل الظهور المميز للإعلانات وخانات إعلانات إضافية وإعلانات مميزة، نقدم خطط اشتراك بأسعار معقولة.</p>
             </div>
           </div>
         </div>
@@ -139,13 +167,16 @@
         <!-- FAQ 4 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">How do I contact a seller?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">How do I contact a seller?</span>
+              <span class="lang-ar">كيف أتواصل مع البائع؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">Open any car listing that interests you and tap the "Contact Seller" button. This will open a direct chat with the seller within the app. You can ask questions about the car, negotiate the price, and arrange a meeting to view the vehicle. All conversations are saved in your messages tab.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">افتح أي إعلان سيارة يثير اهتمامك واضغط على زر "تواصل مع البائع". سيفتح هذا محادثة مباشرة مع البائع داخل التطبيق. يمكنك طرح أسئلة حول السيارة والتفاوض على السعر وترتيب موعد لمشاهدة المركبة. يتم حفظ جميع المحادثات في تبويب الرسائل.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">Open any car listing that interests you and tap the "Contact Seller" button. This will open a direct chat with the seller within the app. You can ask questions about the car, negotiate the price, and arrange a meeting to view the vehicle. All conversations are saved in your messages tab.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">افتح أي إعلان سيارة يثير اهتمامك واضغط على زر "تواصل مع البائع". سيفتح هذا محادثة مباشرة مع البائع داخل التطبيق. يمكنك طرح أسئلة حول السيارة والتفاوض على السعر وترتيب موعد لمشاهدة المركبة. يتم حفظ جميع المحادثات في تبويب الرسائل.</p>
             </div>
           </div>
         </div>
@@ -153,13 +184,16 @@
         <!-- FAQ 5 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">How do I delete my account?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">How do I delete my account?</span>
+              <span class="lang-ar">كيف أحذف حسابي؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">Open the app and go to Settings. Scroll down and tap "Delete Account." You will be asked to confirm the deletion. Once confirmed, your account, listings, and personal data will be permanently removed within 30 days. You can also email us at support@autobazarsyria.com to request account deletion.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">افتح التطبيق وانتقل إلى الإعدادات. مرر للأسفل واضغط على "حذف الحساب". سيُطلب منك تأكيد الحذف. بمجرد التأكيد، سيتم حذف حسابك وإعلاناتك وبياناتك الشخصية نهائياً خلال 30 يوماً. يمكنك أيضاً مراسلتنا على support@autobazarsyria.com لطلب حذف الحساب.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">Open the app and go to Settings. Scroll down and tap "Delete Account." You will be asked to confirm the deletion. Once confirmed, your account, listings, and personal data will be permanently removed within 30 days. You can also email us at support@autobazarsyria.com to request account deletion.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">افتح التطبيق وانتقل إلى الإعدادات. مرر للأسفل واضغط على "حذف الحساب". سيُطلب منك تأكيد الحذف. بمجرد التأكيد، سيتم حذف حسابك وإعلاناتك وبياناتك الشخصية نهائياً خلال 30 يوماً. يمكنك أيضاً مراسلتنا على support@autobazarsyria.com لطلب حذف الحساب.</p>
             </div>
           </div>
         </div>
@@ -167,13 +201,16 @@
         <!-- FAQ 6 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">What cities are covered?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">What cities are covered?</span>
+              <span class="lang-ar">ما المدن المغطاة؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">Auto Bazar Syria covers all major cities across Syria, including Damascus, Aleppo, Homs, Latakia, Tartus, Hama, Deir ez-Zor, Raqqa, Daraa, Sweida, Quneitra, Idlib, Hasakah, and more. We are continuously expanding our coverage to include additional areas.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">يغطي أوتو بازار سوريا جميع المدن الرئيسية في سوريا، بما في ذلك دمشق وحلب وحمص واللاذقية وطرطوس وحماة ودير الزور والرقة ودرعا والسويداء والقنيطرة وإدلب والحسكة والمزيد. نحن نوسع تغطيتنا باستمرار لتشمل مناطق إضافية.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">Auto Bazar Syria covers all major cities across Syria, including Damascus, Aleppo, Homs, Latakia, Tartus, Hama, Deir ez-Zor, Raqqa, Daraa, Sweida, Quneitra, Idlib, Hasakah, and more. We are continuously expanding our coverage to include additional areas.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">يغطي أوتو بازار سوريا جميع المدن الرئيسية في سوريا، بما في ذلك دمشق وحلب وحمص واللاذقية وطرطوس وحماة ودير الزور والرقة ودرعا والسويداء والقنيطرة وإدلب والحسكة والمزيد. نحن نوسع تغطيتنا باستمرار لتشمل مناطق إضافية.</p>
             </div>
           </div>
         </div>
@@ -181,13 +218,16 @@
         <!-- FAQ 7 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">How do I report a problem?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">How do I report a problem?</span>
+              <span class="lang-ar">كيف أبلّغ عن مشكلة؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">If you encounter a problem with the app, a listing, or another user, please email us at support@autobazarsyria.com. Include as much detail as possible, such as screenshots, the listing in question, or the username of the user involved. Our team will investigate and respond within 24 hours.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">إذا واجهت مشكلة مع التطبيق أو إعلان أو مستخدم آخر، يُرجى مراسلتنا على support@autobazarsyria.com. أرفق أكبر قدر ممكن من التفاصيل، مثل لقطات الشاشة أو الإعلان المعني أو اسم المستخدم المعني. سيقوم فريقنا بالتحقيق والرد خلال 24 ساعة.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">If you encounter a problem with the app, a listing, or another user, please email us at support@autobazarsyria.com. Include as much detail as possible, such as screenshots, the listing in question, or the username of the user involved. Our team will investigate and respond within 24 hours.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">إذا واجهت مشكلة مع التطبيق أو إعلان أو مستخدم آخر، يُرجى مراسلتنا على support@autobazarsyria.com. أرفق أكبر قدر ممكن من التفاصيل، مثل لقطات الشاشة أو الإعلان المعني أو اسم المستخدم المعني. سيقوم فريقنا بالتحقيق والرد خلال 24 ساعة.</p>
             </div>
           </div>
         </div>
@@ -195,13 +235,16 @@
         <!-- FAQ 8 -->
         <div class="accordion-item bg-white rounded-2xl border border-gray-100 overflow-hidden">
           <button class="w-full flex items-center justify-between p-5 text-start" onclick="toggleAccordion(this)">
-            <span class="font-semibold text-gray-900">Is my data safe?</span>
+            <span class="font-semibold text-gray-900">
+              <span class="lang-en">Is my data safe?</span>
+              <span class="lang-ar">هل بياناتي آمنة؟</span>
+            </span>
             <svg class="accordion-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
           </button>
           <div class="accordion-content">
             <div class="px-5 pb-5">
-              <p class="text-gray-600 text-sm leading-relaxed mb-3">Yes, we take data security seriously. All data is transmitted using TLS/SSL encryption. Your account is protected with email-verified authentication. We use trusted, industry-standard infrastructure providers (Supabase, Firebase, Stripe) that maintain high security standards. We never sell your personal data to third parties. For more details, read our <a href="privacy.html" class="text-emerald-600 underline">Privacy Policy</a>.</p>
-              <p class="text-gray-500 text-sm leading-relaxed" dir="rtl" lang="ar">نعم، نأخذ أمن البيانات على محمل الجد. يتم نقل جميع البيانات باستخدام تشفير TLS/SSL. حسابك محمي بمصادقة تم التحقق منها بالبريد الإلكتروني. نستخدم مزودي بنية تحتية موثوقين ومعايير صناعية (Supabase و Firebase و Stripe) يحافظون على معايير أمان عالية. نحن لا نبيع بياناتك الشخصية لأطراف ثالثة أبداً. لمزيد من التفاصيل، اقرأ <a href="privacy.html" class="text-emerald-600 underline">سياسة الخصوصية</a>.</p>
+              <p class="lang-en text-gray-600 text-sm leading-relaxed">Yes, we take data security seriously. All data is transmitted using TLS/SSL encryption. Your account is protected with email-verified authentication. We use trusted, industry-standard infrastructure providers (Supabase, Firebase, Stripe) that maintain high security standards. We never sell your personal data to third parties. For more details, read our <a href="privacy.html" class="text-emerald-600 underline">Privacy Policy</a>.</p>
+              <p class="lang-ar text-gray-600 text-sm leading-relaxed">نعم، نأخذ أمن البيانات على محمل الجد. يتم نقل جميع البيانات باستخدام تشفير TLS/SSL. حسابك محمي بمصادقة تم التحقق منها بالبريد الإلكتروني. نستخدم مزودي بنية تحتية موثوقين ومعايير صناعية (Supabase و Firebase و Stripe) يحافظون على معايير أمان عالية. نحن لا نبيع بياناتك الشخصية لأطراف ثالثة أبداً. لمزيد من التفاصيل، اقرأ <a href="privacy.html" class="text-emerald-600 underline">سياسة الخصوصية</a>.</p>
             </div>
           </div>
         </div>
@@ -212,43 +255,63 @@
   <!-- Report a Problem Form -->
   <section class="py-16 bg-gray-50">
     <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-extrabold text-center mb-8">Report a Problem</h2>
+      <h2 class="text-2xl font-extrabold text-center mb-8">
+        <span class="lang-en">Report a Problem</span>
+        <span class="lang-ar">الإبلاغ عن مشكلة</span>
+      </h2>
 
       <form action="mailto:support@autobazarsyria.com" method="POST" enctype="text/plain" class="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm space-y-5">
         <div>
-          <label for="name" class="block text-sm font-semibold text-gray-700 mb-1.5">Your Name</label>
-          <input type="text" id="name" name="name" required placeholder="Enter your name"
-            class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+          <label for="name" class="block text-sm font-semibold text-gray-700 mb-1.5">
+            <span class="lang-en">Your Name</span><span class="lang-ar">اسمك</span>
+          </label>
+          <input type="text" id="name" name="name" required
+            class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+            data-placeholder-en="Enter your name" data-placeholder-ar="أدخل اسمك">
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com"
-            class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+          <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">
+            <span class="lang-en">Email Address</span><span class="lang-ar">البريد الإلكتروني</span>
+          </label>
+          <input type="email" id="email" name="email" required
+            class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+            data-placeholder-en="you@example.com" data-placeholder-ar="you@example.com">
         </div>
 
         <div>
-          <label for="subject" class="block text-sm font-semibold text-gray-700 mb-1.5">Subject</label>
+          <label for="subject" class="block text-sm font-semibold text-gray-700 mb-1.5">
+            <span class="lang-en">Subject</span><span class="lang-ar">الموضوع</span>
+          </label>
           <select id="subject" name="subject"
             class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
-            <option value="bug">Bug Report</option>
-            <option value="listing">Listing Issue</option>
-            <option value="user">Report a User</option>
-            <option value="payment">Payment Issue</option>
-            <option value="account">Account Problem</option>
-            <option value="other">Other</option>
+            <option value="bug" class="lang-en">Bug Report</option>
+            <option value="bug" class="lang-ar">تقرير خطأ</option>
+            <option value="listing" class="lang-en">Listing Issue</option>
+            <option value="listing" class="lang-ar">مشكلة في إعلان</option>
+            <option value="user" class="lang-en">Report a User</option>
+            <option value="user" class="lang-ar">الإبلاغ عن مستخدم</option>
+            <option value="payment" class="lang-en">Payment Issue</option>
+            <option value="payment" class="lang-ar">مشكلة في الدفع</option>
+            <option value="account" class="lang-en">Account Problem</option>
+            <option value="account" class="lang-ar">مشكلة في الحساب</option>
+            <option value="other" class="lang-en">Other</option>
+            <option value="other" class="lang-ar">أخرى</option>
           </select>
         </div>
 
         <div>
-          <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5">Description</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Describe the problem in detail..."
-            class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"></textarea>
+          <label for="message" class="block text-sm font-semibold text-gray-700 mb-1.5">
+            <span class="lang-en">Description</span><span class="lang-ar">الوصف</span>
+          </label>
+          <textarea id="message" name="message" rows="5" required
+            class="w-full px-4 py-3 rounded-2xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"
+            data-placeholder-en="Describe the problem in detail..." data-placeholder-ar="صف المشكلة بالتفصيل..."></textarea>
         </div>
 
         <button type="submit"
           class="w-full btn-glow bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-2xl font-semibold text-base transition-all">
-          Send Report
+          <span class="lang-en">Send Report</span><span class="lang-ar">إرسال</span>
         </button>
       </form>
     </div>
@@ -265,28 +328,35 @@
             </div>
             <span class="text-white text-lg font-extrabold">Auto Bazar</span>
           </a>
-          <p class="text-sm leading-relaxed">The #1 car marketplace in Syria.</p>
+          <p class="text-sm leading-relaxed">
+            <span class="lang-en">The #1 car marketplace in Syria.</span>
+            <span class="lang-ar">سوق السيارات الموثوق في سوريا.</span>
+          </p>
         </div>
         <div>
-          <h4 class="text-white font-semibold mb-4">Links</h4>
+          <h4 class="text-white font-semibold mb-4"><span class="lang-en">Links</span><span class="lang-ar">روابط سريعة</span></h4>
           <nav class="flex flex-col gap-2">
-            <a href="/" class="text-sm hover:text-emerald-400 transition-colors">Home</a>
-            <a href="privacy.html" class="text-sm hover:text-emerald-400 transition-colors">Privacy Policy</a>
-            <a href="terms.html" class="text-sm hover:text-emerald-400 transition-colors">Terms of Service</a>
-            <a href="support.html" class="text-sm hover:text-emerald-400 transition-colors">Support</a>
+            <a href="/" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+            <a href="privacy.html" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Privacy Policy</span><span class="lang-ar">سياسة الخصوصية</span></a>
+            <a href="terms.html" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Terms of Service</span><span class="lang-ar">شروط الاستخدام</span></a>
+            <a href="support.html" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
           </nav>
         </div>
         <div>
-          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <h4 class="text-white font-semibold mb-4"><span class="lang-en">Contact</span><span class="lang-ar">تواصل معنا</span></h4>
           <p class="text-sm"><a href="mailto:support@autobazarsyria.com" class="hover:text-emerald-400 transition-colors">support@autobazarsyria.com</a></p>
         </div>
       </div>
       <div class="border-t border-gray-800 mt-10 pt-6 text-center text-sm">
-        <p>&copy; 2026 Auto Bazar Syria. All rights reserved.</p>
+        <p>
+          <span class="lang-en">&copy; 2026 Auto Bazar Syria. All rights reserved.</span>
+          <span class="lang-ar">&copy; 2026 أوتو بازار سوريا. جميع الحقوق محفوظة.</span>
+        </p>
       </div>
     </div>
   </footer>
 
+  <script src="js/lang.js"></script>
   <script>
     // Mobile menu toggle
     function toggleMenu() {
@@ -307,6 +377,15 @@
         item.classList.add('active');
       }
     }
+
+    // Update placeholders on lang change
+    const origSetLang = setLang;
+    setLang = function(lang) {
+      origSetLang(lang);
+      document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+        el.placeholder = lang === 'ar' ? el.dataset.placeholderAr : el.dataset.placeholderEn;
+      });
+    };
 
     // Fade-in
     const observer = new IntersectionObserver((entries) => {

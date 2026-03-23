@@ -190,6 +190,24 @@ a:focus-visible, button:focus-visible {
   border-radius: 4px;
 }
 
+/* Language toggle button */
+.lang-toggle {
+  cursor: pointer;
+  border: none;
+  font-family: 'Inter', 'Noto Sans Arabic', sans-serif;
+  white-space: nowrap;
+}
+
+/* RTL adjustments */
+[dir="rtl"] .hamburger {
+  order: -1;
+}
+
+[dir="rtl"] .legal-content ul {
+  padding-inline-start: 1.5rem;
+  padding-inline-end: 0;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
