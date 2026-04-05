@@ -28,6 +28,10 @@ function setLang(lang) {
   document.body.style.fontFamily = lang === 'ar'
     ? "'Noto Sans Arabic', 'Inter', sans-serif"
     : "'Inter', sans-serif";
+
+  document.title = lang === 'ar'
+    ? 'أوتو بازار | سيارات للبيع في سوريا - سوق السيارات الأول'
+    : 'Auto Bazar | Cars for Sale in Syria - #1 Car Marketplace';
 }
 
 function toggleLang() {
