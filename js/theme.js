@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', updateThemeIcon);
 // MOBILE MENU
 // ========================
 function toggleMenu() {
-  const ham = document.querySelector('.hamburger');
   const menu = document.querySelector('.mobile-menu');
-  if (ham) ham.classList.toggle('active');
-  if (menu) menu.classList.toggle('open');
+  const burger = document.querySelector('.hamburger');
+  menu.classList.toggle('open');
+  burger.classList.toggle('active');
 }
 
 // ========================
