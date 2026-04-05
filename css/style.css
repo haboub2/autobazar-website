@@ -443,7 +443,7 @@ h4 {
     display: none !important;
   }
 
-  .nav-actions-side {
+  .nav-actions-side .desktop-only {
     display: none !important;
   }
 
