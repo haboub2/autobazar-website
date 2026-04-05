@@ -3,74 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <title>Privacy Policy - Auto Bazar Syria</title>
-  <meta name="description" content="Auto Bazar Syria privacy policy. Learn how we collect, use, and protect your personal data.">
-  <meta property="og:title" content="Privacy Policy - Auto Bazar Syria">
-  <meta property="og:description" content="Learn how we collect, use, and protect your personal data.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://autobazarsyria.com/privacy">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            emerald: { 50:'#ecfdf5',100:'#d1fae5',200:'#a7f3d0',300:'#6ee7b7',400:'#34d399',500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b' },
-            dark: { 900:'#111827',800:'#1f2937',750:'#2d3748',700:'#374151' }
-          },
-          fontFamily: { inter:['Inter','sans-serif'] },
-        },
-      },
-    }
-  </script>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>(function(){var s=localStorage.getItem('ab-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
+  <link rel="stylesheet" href="css/style.css?v=12">
 </head>
-<body class="font-inter bg-white text-gray-900 antialiased">
+<body class="font-inter antialiased">
 
-  <!-- Header -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="/" class="flex items-center gap-2.5">
-          <img src="/logo.png" alt="Auto Bazar" class="w-9 h-9 rounded-xl">
-          <span class="text-xl font-extrabold tracking-tight">Auto Bazar</span>
+                  <!-- ====== NAVBAR ====== -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo-side">
+        <a href="/" class="nav-logo">
+          <img src="/logo.png" alt="Auto Bazar">
+          <span class="nav-logo-text"><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
         </a>
-        <nav class="hidden md:flex items-center gap-8">
-          <a href="/" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">
-            <span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span>
-          </a>
-          <a href="privacy.html" class="text-sm font-medium text-emerald-600">
-            <span class="lang-en">Privacy</span><span class="lang-ar">سياسة الخصوصية</span>
-          </a>
-          <a href="terms.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">
-            <span class="lang-en">Terms</span><span class="lang-ar">شروط الاستخدام</span>
-          </a>
-          <a href="support.html" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors">
-            <span class="lang-en">Support</span><span class="lang-ar">الدعم</span>
-          </a>
-          <button onclick="toggleLang()" class="lang-toggle px-3 py-1.5 bg-emerald-600 text-white rounded-full text-sm font-semibold hover:bg-emerald-700 transition"></button>
-        </nav>
-        <div class="flex md:hidden items-center gap-2">
-          <button onclick="toggleLang()" class="lang-toggle px-3 py-1.5 bg-emerald-600 text-white rounded-full text-sm font-semibold hover:bg-emerald-700 transition"></button>
-          <button class="hamburger flex flex-col gap-1.5 p-2 text-gray-700" onclick="toggleMenu()" aria-label="Toggle menu">
+      </div>
+
+      <nav class="nav-links">
+        <a href="/" class="nav-link"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+        <a href="privacy.html" class="nav-link active"><span class="lang-en">Privacy</span><span class="lang-ar">الخصوصية</span></a>
+        <a href="terms.html" class="nav-link"><span class="lang-en">Terms</span><span class="lang-ar">الشروط</span></a>
+        <a href="support.html" class="nav-link"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
+      </nav>
+
+      <div class="nav-actions-side">
+        <div class="desktop-only" style="display:flex;gap:12px;align-items:center;">
+          <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+          <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+        </div>
+        <div class="mobile-only">
+          <button id="theme-toggle-btn-m" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+          <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+          <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
             <span></span><span></span><span></span>
           </button>
         </div>
       </div>
-      <div class="mobile-menu md:hidden">
-        <nav class="flex flex-col py-4 border-t border-gray-100">
-          <a href="/" class="py-2.5 text-sm font-medium text-gray-600"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
-          <a href="privacy.html" class="py-2.5 text-sm font-medium text-emerald-600"><span class="lang-en">Privacy</span><span class="lang-ar">سياسة الخصوصية</span></a>
-          <a href="terms.html" class="py-2.5 text-sm font-medium text-gray-600"><span class="lang-en">Terms</span><span class="lang-ar">شروط الاستخدام</span></a>
-          <a href="support.html" class="py-2.5 text-sm font-medium text-gray-600"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
-        </nav>
-      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="/"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+      <a href="privacy.html"><span class="lang-en">Privacy</span><span class="lang-ar">الخصوصية</span></a>
+      <a href="terms.html"><span class="lang-en">Terms</span><span class="lang-ar">الشروط</span></a>
+      <a href="support.html"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
     </div>
   </header>
 
@@ -95,9 +71,9 @@
       <div class="lang-en legal-content" dir="ltr">
         <p class="text-sm text-gray-500 mb-8"><strong>Last Updated:</strong> March 22, 2026</p>
 
-        <p>Auto Bazar Syria ("we," "our," or "us"), operated by El-Enjaz, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services (collectively, the "Service").</p>
+        <p><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> ("we," "our," or "us"), operated by El-Enjaz, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services (collectively, the "Service").</p>
 
-        <p>By using Auto Bazar Syria, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this privacy policy, please do not access the application.</p>
+        <p>By using <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this privacy policy, please do not access the application.</p>
 
         <h2>1. Information We Collect</h2>
 
@@ -143,7 +119,7 @@
         </ul>
 
         <h2>4. Third-Party Services</h2>
-        <p>We use the following third-party services to operate Auto Bazar Syria:</p>
+        <p>We use the following third-party services to operate <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>:</p>
         <ul>
           <li><strong>Supabase:</strong> Provides our database, user authentication, and file storage infrastructure. Your account data, listings, and uploaded photos are stored on Supabase servers.</li>
           <li><strong>Firebase (Google):</strong> Used for push notifications and analytics. Firebase may collect device identifiers and usage data.</li>
@@ -153,7 +129,7 @@
         <p>Each of these providers has their own privacy policy governing how they handle your data. We encourage you to review their policies.</p>
 
         <h2>5. Cross-App Tracking</h2>
-        <p>We do <strong>not</strong> track you across other apps or websites. We do not use advertising trackers, and we do not build profiles based on your activity outside of Auto Bazar Syria.</p>
+        <p>We do <strong>not</strong> track you across other apps or websites. We do not use advertising trackers, and we do not build profiles based on your activity outside of <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>.</p>
 
         <h2>6. Data Retention</h2>
         <ul>
@@ -175,7 +151,7 @@
         <p>To exercise any of these rights, please contact us at <a href="mailto:support@autobazarsyria.com" class="text-emerald-600 underline">support@autobazarsyria.com</a>.</p>
 
         <h2>8. Children's Privacy</h2>
-        <p>Auto Bazar Syria is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we discover that a child under 13 has provided us with personal information, we will delete it immediately. If you believe a child under 13 has provided us with personal data, please contact us at <a href="mailto:support@autobazarsyria.com" class="text-emerald-600 underline">support@autobazarsyria.com</a>.</p>
+        <p><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we discover that a child under 13 has provided us with personal information, we will delete it immediately. If you believe a child under 13 has provided us with personal data, please contact us at <a href="mailto:support@autobazarsyria.com" class="text-emerald-600 underline">support@autobazarsyria.com</a>.</p>
 
         <h2>9. International Data Transfers</h2>
         <p>Your data may be processed and stored on servers located outside of Syria, including servers operated by our third-party service providers (Supabase, Firebase, Stripe, Amazon SES). These providers may process your data in the United States, the European Union, or other jurisdictions. By using the app, you consent to the transfer of your data to these locations.</p>
@@ -191,7 +167,7 @@
         <p>However, no method of electronic transmission or storage is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</p>
 
         <h2>11. Cookies and Similar Technologies</h2>
-        <p>As a mobile application, Auto Bazar Syria uses minimal cookie-like technologies. We use only essential local storage for:</p>
+        <p>As a mobile application, <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> uses minimal cookie-like technologies. We use only essential local storage for:</p>
         <ul>
           <li>Keeping you logged in to your account</li>
           <li>Storing your app preferences (language, display settings)</li>
@@ -199,7 +175,7 @@
         <p>We do not use cookies for advertising or cross-site tracking purposes.</p>
 
         <h2>12. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. When we make material changes, we will notify you through the app or via email. Your continued use of Auto Bazar Syria after changes are posted constitutes your acceptance of the updated policy.</p>
+        <p>We may update this Privacy Policy from time to time. When we make material changes, we will notify you through the app or via email. Your continued use of <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> after changes are posted constitutes your acceptance of the updated policy.</p>
 
         <h2>13. Contact Us</h2>
         <p>If you have any questions about this Privacy Policy, wish to exercise your data rights, or have concerns about how your data is handled, please contact us:</p>
@@ -213,9 +189,9 @@
       <div class="lang-ar legal-content" dir="rtl">
         <p class="text-sm text-gray-500 mb-8"><strong>آخر تحديث:</strong> 22 مارس 2026</p>
 
-        <p>يلتزم تطبيق أوتو بازار سوريا ("نحن" أو "لدينا" أو "الخاص بنا")، الذي تديره شركة الإنجاز، بحماية خصوصيتك. توضح سياسة الخصوصية هذه كيفية جمع معلوماتك واستخدامها والإفصاح عنها وحمايتها عند استخدامك لتطبيقنا على الهاتف المحمول والخدمات ذات الصلة (يُشار إليها مجتمعةً بـ"الخدمة").</p>
+        <p>يلتزم تطبيق <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> ("نحن" أو "لدينا" أو "الخاص بنا")، الذي تديره شركة الإنجاز، بحماية خصوصيتك. توضح سياسة الخصوصية هذه كيفية جمع معلوماتك واستخدامها والإفصاح عنها وحمايتها عند استخدامك لتطبيقنا على الهاتف المحمول والخدمات ذات الصلة (يُشار إليها مجتمعةً بـ"الخدمة").</p>
 
-        <p>باستخدامك لتطبيق أوتو بازار سوريا، فإنك توافق على جمع واستخدام المعلومات وفقاً لهذه السياسة. إذا كنت لا توافق على شروط سياسة الخصوصية هذه، يُرجى عدم الوصول إلى التطبيق.</p>
+        <p>باستخدامك لتطبيق <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>، فإنك توافق على جمع واستخدام المعلومات وفقاً لهذه السياسة. إذا كنت لا توافق على شروط سياسة الخصوصية هذه، يُرجى عدم الوصول إلى التطبيق.</p>
 
         <h2>1. المعلومات التي نجمعها</h2>
 
@@ -261,7 +237,7 @@
         </ul>
 
         <h2>4. خدمات الطرف الثالث</h2>
-        <p>نستخدم خدمات الطرف الثالث التالية لتشغيل أوتو بازار سوريا:</p>
+        <p>نستخدم خدمات الطرف الثالث التالية لتشغيل <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>:</p>
         <ul>
           <li><strong>Supabase:</strong> توفر البنية التحتية لقاعدة البيانات ومصادقة المستخدمين وتخزين الملفات. يتم تخزين بيانات حسابك وإعلاناتك والصور المحمّلة على خوادم Supabase.</li>
           <li><strong>Firebase (Google):</strong> تُستخدم للإشعارات الفورية والتحليلات. قد تجمع Firebase معرّفات الأجهزة وبيانات الاستخدام.</li>
@@ -271,7 +247,7 @@
         <p>لكل من هذه الجهات سياسة خصوصية خاصة بها تحكم كيفية تعاملها مع بياناتك. نشجعك على مراجعة سياساتها.</p>
 
         <h2>5. التتبع عبر التطبيقات</h2>
-        <p>نحن <strong>لا</strong> نتتبعك عبر التطبيقات أو المواقع الإلكترونية الأخرى. لا نستخدم متتبعات إعلانية، ولا نبني ملفات تعريفية بناءً على نشاطك خارج أوتو بازار سوريا.</p>
+        <p>نحن <strong>لا</strong> نتتبعك عبر التطبيقات أو المواقع الإلكترونية الأخرى. لا نستخدم متتبعات إعلانية، ولا نبني ملفات تعريفية بناءً على نشاطك خارج <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>.</p>
 
         <h2>6. الاحتفاظ بالبيانات</h2>
         <ul>
@@ -293,7 +269,7 @@
         <p>لممارسة أي من هذه الحقوق، يُرجى الاتصال بنا على <a href="mailto:support@autobazarsyria.com" class="text-emerald-600 underline">support@autobazarsyria.com</a>.</p>
 
         <h2>8. خصوصية الأطفال</h2>
-        <p>أوتو بازار سوريا غير موجّه للأطفال دون سن 13 عاماً. نحن لا نجمع عن قصد معلومات شخصية من الأطفال دون سن 13 عاماً. إذا اكتشفنا أن طفلاً دون 13 عاماً قد زوّدنا بمعلومات شخصية، فسنحذفها فوراً. إذا كنت تعتقد أن طفلاً دون 13 عاماً قد زوّدنا ببيانات شخصية، يُرجى الاتصال بنا على <a href="mailto:support@autobazarsyria.com" class="text-emerald-600 underline">support@autobazarsyria.com</a>.</p>
+        <p><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> غير موجّه للأطفال دون سن 13 عاماً. نحن لا نجمع عن قصد معلومات شخصية من الأطفال دون سن 13 عاماً. إذا اكتشفنا أن طفلاً دون 13 عاماً قد زوّدنا بمعلومات شخصية، فسنحذفها فوراً. إذا كنت تعتقد أن طفلاً دون 13 عاماً قد زوّدنا ببيانات شخصية، يُرجى الاتصال بنا على <a href="mailto:support@autobazarsyria.com" class="text-emerald-600 underline">support@autobazarsyria.com</a>.</p>
 
         <h2>9. نقل البيانات الدولي</h2>
         <p>قد تتم معالجة بياناتك وتخزينها على خوادم موجودة خارج سوريا، بما في ذلك الخوادم التي يشغّلها مزودو خدمات الطرف الثالث لدينا (Supabase و Firebase و Stripe و Amazon SES). قد يعالج هؤلاء المزودون بياناتك في الولايات المتحدة أو الاتحاد الأوروبي أو مناطق قضائية أخرى. باستخدامك للتطبيق، فإنك توافق على نقل بياناتك إلى هذه المواقع.</p>
@@ -309,7 +285,7 @@
         <p>ومع ذلك، لا توجد طريقة للنقل الإلكتروني أو التخزين آمنة بنسبة 100%. رغم سعينا لحماية بياناتك، لا يمكننا ضمان الأمان المطلق.</p>
 
         <h2>11. ملفات تعريف الارتباط والتقنيات المشابهة</h2>
-        <p>بصفته تطبيقاً للهاتف المحمول، يستخدم أوتو بازار سوريا الحد الأدنى من التقنيات المشابهة لملفات تعريف الارتباط. نستخدم فقط التخزين المحلي الأساسي من أجل:</p>
+        <p>بصفته تطبيقاً للهاتف المحمول، يستخدم <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> الحد الأدنى من التقنيات المشابهة لملفات تعريف الارتباط. نستخدم فقط التخزين المحلي الأساسي من أجل:</p>
         <ul>
           <li>إبقائك مسجّل الدخول في حسابك</li>
           <li>تخزين تفضيلات التطبيق (اللغة وإعدادات العرض)</li>
@@ -317,7 +293,7 @@
         <p>لا نستخدم ملفات تعريف الارتباط لأغراض الإعلان أو التتبع عبر المواقع.</p>
 
         <h2>12. التغييرات على هذه السياسة</h2>
-        <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. عندما نجري تغييرات جوهرية، سنُعلمك من خلال التطبيق أو عبر البريد الإلكتروني. يُعتبر استمرارك في استخدام أوتو بازار سوريا بعد نشر التغييرات قبولاً منك للسياسة المحدّثة.</p>
+        <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. عندما نجري تغييرات جوهرية، سنُعلمك من خلال التطبيق أو عبر البريد الإلكتروني. يُعتبر استمرارك في استخدام <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span> بعد نشر التغييرات قبولاً منك للسياسة المحدّثة.</p>
 
         <h2>13. اتصل بنا</h2>
         <p>إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه، أو ترغب في ممارسة حقوقك المتعلقة بالبيانات، أو لديك مخاوف بشأن كيفية التعامل مع بياناتك، يُرجى الاتصال بنا:</p>
@@ -330,53 +306,41 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-dark-900 text-gray-400 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- ====== FOOTER ====== -->
+  <footer class="footer-wrap">
+    <div class="footer-inner">
+      <div class="footer-grid">
         <div>
-          <a href="/" class="flex items-center gap-2.5 mb-4">
-            <img src="/logo.png" alt="Auto Bazar" class="w-9 h-9 rounded-xl">
-            <span class="text-white text-lg font-extrabold">Auto Bazar</span>
-          </a>
-          <p class="text-sm leading-relaxed">
-            <span class="lang-en">The #1 car marketplace in Syria.</span>
-            <span class="lang-ar">سوق السيارات الموثوق في سوريا.</span>
+          <div class="footer-logo">
+            <img src="/logo.png" alt="Auto Bazar">
+            <span><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
+          </div>
+          <p class="footer-desc">
+            <span class="lang-en">The #1 car marketplace in Syria. Connecting buyers and sellers across 14 provinces.</span>
+            <span class="lang-ar">سوق السيارات الأول في سوريا. نربط بين المشترين والبائعين في 14 محافظة.</span>
           </p>
         </div>
         <div>
-          <h4 class="text-white font-semibold mb-4"><span class="lang-en">Links</span><span class="lang-ar">روابط سريعة</span></h4>
-          <nav class="flex flex-col gap-2">
-            <a href="/" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
-            <a href="privacy.html" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Privacy Policy</span><span class="lang-ar">سياسة الخصوصية</span></a>
-            <a href="terms.html" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Terms of Service</span><span class="lang-ar">شروط الاستخدام</span></a>
-            <a href="support.html" class="text-sm hover:text-emerald-400 transition-colors"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
-          </nav>
+          <p class="footer-heading"><span class="lang-en">Pages</span><span class="lang-ar">الصفحات</span></p>
+          <div class="footer-links">
+            <a href="/"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+            <a href="privacy.html"><span class="lang-en">Privacy Policy</span><span class="lang-ar">سياسة الخصوصية</span></a>
+            <a href="terms.html"><span class="lang-en">Terms of Service</span><span class="lang-ar">شروط الاستخدام</span></a>
+            <a href="support.html"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
+          </div>
         </div>
         <div>
-          <h4 class="text-white font-semibold mb-4"><span class="lang-en">Contact</span><span class="lang-ar">تواصل معنا</span></h4>
-          <p class="text-sm"><a href="mailto:support@autobazarsyria.com" class="hover:text-emerald-400 transition-colors">support@autobazarsyria.com</a></p>
+          <p class="footer-heading"><span class="lang-en">Contact</span><span class="lang-ar">تواصل معنا</span></p>
+          <div class="footer-links">
+            <a href="mailto:support@autobazarsyria.com">support@autobazarsyria.com</a>
+            <span style="color:#475569;font-size:0.875rem;"><span class="lang-en">Operated by El-Enjaz</span><span class="lang-ar">تشغيل شركة الإنجاز</span></span>
+          </div>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-10 pt-6 text-center text-sm">
-        <p>
-          <span class="lang-en">&copy; 2026 Auto Bazar Syria. All rights reserved.</span>
-          <span class="lang-ar">&copy; 2026 أوتو بازار سوريا. جميع الحقوق محفوظة.</span>
-        </p>
+      <div class="footer-bottom">
+        <span class="lang-en">&copy; 2026 <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>. All rights reserved.</span>
+        <span class="lang-ar">&copy; 2026 <span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span>. جميع الحقوق محفوظة.</span>
       </div>
     </div>
-  </footer>
-
-  <script src="js/lang.js"></script>
-  <script>
-    function toggleMenu() {
-      document.querySelector('.hamburger').classList.toggle('active');
-      document.querySelector('.mobile-menu').classList.toggle('open');
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
-</body>
+  </footer><script src="js/lang.js"></script><script src="js/theme.js"></script></body>
 </html>

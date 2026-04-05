@@ -18,10 +18,11 @@ function setLang(lang) {
     el.style.display = lang === 'ar' ? '' : 'none';
   });
 
-  // Update toggle button text
-  document.querySelectorAll('.lang-toggle').forEach(btn => {
-    btn.textContent = lang === 'en' ? 'عربي' : 'EN';
-  });
+  // Update toggle button text - Handled by CSS to prevent duplication
+  // document.querySelectorAll('.lang-toggle').forEach(btn => {
+  //   btn.textContent = lang === 'en' ? 'عربي' : 'EN';
+  // });
+
 
   // Update font
   document.body.style.fontFamily = lang === 'ar'
