@@ -422,7 +422,7 @@ h4 {
 
 /* Mobile Specific Controls */
 .mobile-only {
-  display: none !important;
+  display: none;
 }
 
 @media (max-width: 768px) {
