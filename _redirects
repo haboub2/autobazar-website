@@ -1,6 +1,15 @@
-/privacy    /privacy.html   200
-/terms      /terms.html     200
-/confirm    /confirm.html   200
-/support    /support.html   200
-/delete-account    /delete-account.html   200
-/reset-password    /reset-password.html   200
+# 301 redirects: old .html URLs → clean URLs
+/privacy.html         /privacy          301
+/terms.html           /terms            301
+/support.html         /support          301
+/confirm.html         /confirm          301
+/delete-account.html  /delete-account   301
+/reset-password.html  /reset-password   301
+
+# 200 rewrites: clean URLs → actual .html files (no extension in browser)
+/privacy              /privacy.html     200
+/terms                /terms.html       200
+/support              /support.html     200
+/confirm              /confirm.html     200
+/delete-account       /delete-account.html  200
+/reset-password       /reset-password.html  200
