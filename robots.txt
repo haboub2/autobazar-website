@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Block utility/app-only pages — not useful in search results
+Disallow: /confirm
+Disallow: /confirm.html
+Disallow: /delete-account
+Disallow: /delete-account.html
+Disallow: /reset-password
+Disallow: /reset-password.html
+
 Sitemap: https://autobazarsyria.com/sitemap.xml
