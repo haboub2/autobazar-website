@@ -1263,6 +1263,30 @@ label {
   animation: check-draw 0.5s 0.35s ease forwards;
 }
 
+/* ===================== COMING SOON BUTTONS ===================== */
+.btn-coming-soon {
+  position: relative;
+  opacity: 0.72;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn-coming-soon .soon-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
 /* ===================== FAQ SECTION (Homepage) ===================== */
 .faq-list {
   max-width: 720px;
