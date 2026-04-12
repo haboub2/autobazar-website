@@ -999,20 +999,33 @@ function showView(view){
 }
 
 // ===== Auth listener =====
+// appReady flag prevents the listener from fighting with init() on page load.
+// onAuthStateChange fires SIGNED_IN both on fresh login AND on page load with
+// an existing session — without this guard, both init() and the listener would
+// call showLoader(true), and if either fetch fails the spinner never hides.
+let appReady = false;
+
 supabase.auth.onAuthStateChange(async (event, session) => {
-  if(session && session.user){
+  // Ignore events until init() has finished its own session check
+  if (!appReady) return;
+
+  if (event === 'SIGNED_IN' && session?.user) {
     currentUser = session.user;
-    if(event === 'SIGNED_IN'){
-      showLoader(true);
+    showLoader(true);
+    try {
       const [profile, txs] = await Promise.all([
         loadProfile(session.user),
         loadTransactions(session.user.id)
       ]);
-      showLoader(false);
       renderDashboard(session.user, profile, txs);
       showView('dashboard');
+    } catch(e) {
+      // Still show dashboard even if data fetch failed
+      showView('dashboard');
+    } finally {
+      showLoader(false);
     }
-  } else if(event === 'SIGNED_OUT'){
+  } else if (event === 'SIGNED_OUT') {
     currentUser = null;
     showView('login');
   }
@@ -1038,6 +1051,7 @@ supabase.auth.onAuthStateChange(async (event, session) => {
     showView('login');
   } finally {
     showLoader(false);
+    appReady = true; // Now let onAuthStateChange handle future events
   }
 })();
 </script>
