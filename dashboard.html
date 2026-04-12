@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>My Account | Auto Bazar</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#059669" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>(function(){var s=localStorage.getItem('ab-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
+  <link rel="stylesheet" href="css/style.css?v=15">
+  <style>
+    /* ===== DASHBOARD CUSTOM STYLES ===== */
+    :root {
+      --green:       #059669;
+      --green-light: #10b981;
+      --green-dark:  #047857;
+      --radius:      14px;
+    }
+
+    /* Page layout */
+    .dash-page {
+      min-height: calc(100vh - 64px);
+      background: var(--bg, #f9fafb);
+      padding: 36px 16px 60px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    [data-theme="dark"] .dash-page { background: var(--surface, #0a0a0f); }
+
+    .dash-container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    /* ===== CARD BASE ===== */
+    .dash-card {
+      background: var(--card-bg, #ffffff);
+      border: 1px solid var(--border-color, #e5e7eb);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .dash-card {
+      background: #15151f;
+      border-color: #2a2a38;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    /* ===== PROFILE HEADER ===== */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-info { min-width: 0; }
+    .profile-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary, #111827);
+      margin-bottom: 2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .profile-name { color: #f9fafb; }
+    .profile-email {
+      font-size: 0.85rem;
+      color: var(--text-secondary, #6b7280);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .profile-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+    [dir="rtl"] .profile-actions { margin-left: 0; margin-right: auto; }
+
+    /* ===== SIGN OUT BTN ===== */
+    .btn-signout {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color, #e5e7eb);
+      background: transparent;
+      color: var(--text-secondary, #6b7280);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .btn-signout:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+    [data-theme="dark"] .btn-signout { border-color: #2a2a38; color: #9ca3af; }
+    [data-theme="dark"] .btn-signout:hover { background: rgba(220,38,38,0.15); color: #f87171; border-color: rgba(220,38,38,0.3); }
+
+    /* ===== STAT GRID ===== */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 480px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
+    .stat-card {
+      background: var(--card-bg, #ffffff);
+      border: 1px solid var(--border-color, #e5e7eb);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .stat-card {
+      background: #15151f;
+      border-color: #2a2a38;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .stat-card.highlight::before { opacity: 1; }
+
+    .stat-icon {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    .stat-icon-plan    { background: rgba(5,150,105,0.12); }
+    .stat-icon-credits { background: rgba(59,130,246,0.12); }
+    .stat-icon-expiry  { background: rgba(245,158,11,0.12); }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary, #6b7280);
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-primary, #111827);
+      line-height: 1.2;
+    }
+    [data-theme="dark"] .stat-value { color: #f9fafb; }
+    .stat-sub {
+      font-size: 0.75rem;
+      color: var(--text-secondary, #9ca3af);
+      margin-top: 3px;
+    }
+
+    /* Plan badge colors */
+    .plan-free     { color: #6b7280; }
+    .plan-monthly  { color: var(--green); }
+    .plan-credits  { color: #3b82f6; }
+
+    /* ===== CTA CARD ===== */
+    .cta-card {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .cta-text-block { color: #fff; }
+    .cta-title { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+    .cta-sub   { font-size: 0.82rem; opacity: 0.82; }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 22px;
+      background: #fff;
+      color: var(--green-dark);
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      transition: opacity 0.15s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ===== TRANSACTIONS ===== */
+    .section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-secondary, #6b7280);
+      margin-bottom: 12px;
+    }
+    .tx-list { display: flex; flex-direction: column; gap: 8px; }
+    .tx-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--bg, #f9fafb);
+      border: 1px solid var(--border-color, #f3f4f6);
+    }
+    [data-theme="dark"] .tx-row { background: #1a1a24; border-color: #2a2a38; }
+    .tx-icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .tx-icon-ok      { background: rgba(5,150,105,0.12); }
+    .tx-icon-pending { background: rgba(245,158,11,0.12); }
+    .tx-icon-fail    { background: rgba(239,68,68,0.1); }
+    .tx-info { flex: 1; min-width: 0; }
+    .tx-type { font-size: 0.85rem; font-weight: 600; color: var(--text-primary, #111827); }
+    [data-theme="dark"] .tx-type { color: #f3f4f6; }
+    .tx-date { font-size: 0.75rem; color: var(--text-secondary, #9ca3af); }
+    .tx-amount { font-size: 0.88rem; font-weight: 700; color: var(--green); flex-shrink: 0; }
+    .tx-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .tx-status-completed { background: rgba(5,150,105,0.12); color: var(--green); }
+    .tx-status-pending   { background: rgba(245,158,11,0.12); color: #d97706; }
+    .tx-status-failed    { background: rgba(239,68,68,0.1);  color: #dc2626; }
+    .tx-empty {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-secondary, #9ca3af);
+      font-size: 0.85rem;
+    }
+
+    /* ===== LOGIN SCREEN ===== */
+    .login-wrap {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .login-card {
+      background: var(--card-bg, #ffffff);
+      border: 1px solid var(--border-color, #e5e7eb);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    [data-theme="dark"] .login-card { background: #15151f; border-color: #2a2a38; }
+
+    .login-logo { text-align: center; margin-bottom: 24px; }
+    .login-logo img { height: 48px; }
+    .login-title { font-size: 1.4rem; font-weight: 800; color: var(--text-primary, #111827); margin-bottom: 6px; }
+    [data-theme="dark"] .login-title { color: #f9fafb; }
+    .login-sub { font-size: 0.87rem; color: var(--text-secondary, #6b7280); margin-bottom: 24px; line-height: 1.5; }
+
+    /* Form inputs */
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-primary, #111827);
+      margin-bottom: 5px;
+    }
+    [data-theme="dark"] .form-label { color: #f3f4f6; }
+    .form-input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--border-color, #e5e7eb);
+      border-radius: 9px;
+      background: var(--bg, #f9fafb);
+      color: var(--text-primary, #111827);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -webkit-appearance: none;
+    }
+    [data-theme="dark"] .form-input { background: #1a1a24; border-color: #2a2a38; color: #f9fafb; }
+    .form-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(5,150,105,0.13); }
+    .form-group { margin-bottom: 14px; }
+
+    /* Buttons */
+    .btn-full {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 9px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s, background 0.15s;
+    }
+    .btn-full:active:not(:disabled) { transform: scale(0.98); }
+    .btn-full:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-green { background: var(--green); color: #fff; }
+    .btn-green:hover:not(:disabled) { background: var(--green-dark); }
+    .btn-ghost {
+      background: var(--bg, #f9fafb);
+      color: var(--text-primary, #111827);
+      border: 1.5px solid var(--border-color, #e5e7eb);
+    }
+    [data-theme="dark"] .btn-ghost { background: #1a1a24; border-color: #2a2a38; color: #f9fafb; }
+    .btn-ghost:hover:not(:disabled) { background: var(--border-color, #e5e7eb); }
+
+    .divider-line {
+      display: flex; align-items: center; gap: 12px;
+      margin: 16px 0;
+      color: #9ca3af; font-size: 0.78rem;
+    }
+    .divider-line::before, .divider-line::after {
+      content: ''; flex: 1; height: 1px; background: var(--border-color, #e5e7eb);
+    }
+    [data-theme="dark"] .divider-line::before,
+    [data-theme="dark"] .divider-line::after { background: #2a2a38; }
+
+    .link-btn {
+      background: none; border: none; padding: 0;
+      color: var(--green); font-weight: 600;
+      font-size: inherit; font-family: inherit;
+      cursor: pointer; text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .link-btn:hover { color: var(--green-dark); }
+
+    .alert-box {
+      border-radius: 9px; padding: 11px 13px;
+      font-size: 0.85rem; margin-bottom: 14px; line-height: 1.5;
+    }
+    .alert-err {
+      background: rgba(239,68,68,0.09);
+      border: 1px solid rgba(239,68,68,0.2);
+      color: #dc2626;
+    }
+    [data-theme="dark"] .alert-err { color: #f87171; }
+    .alert-ok {
+      background: rgba(5,150,105,0.09);
+      border: 1px solid rgba(5,150,105,0.2);
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .alert-ok { color: var(--green-light); }
+
+    /* Spinner */
+    .spin {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: rotate 0.7s linear infinite;
+      display: inline-block;
+    }
+    .spin-green { border-color: rgba(5,150,105,0.25); border-top-color: var(--green); }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+
+    /* Full-page loader */
+    .page-loader {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-loader.show { display: flex; }
+    .page-loader-inner {
+      background: var(--card-bg, #fff);
+      border-radius: 14px;
+      padding: 28px 40px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 14px;
+      font-weight: 600; font-size: 0.9rem;
+    }
+    [data-theme="dark"] .page-loader-inner { background: #15151f; color: #f9fafb; }
+    .page-loader-inner .spin { border-color: rgba(5,150,105,0.25); border-top-color: var(--green); }
+
+    /* Magic sent */
+    .magic-box { text-align: center; padding: 8px 0; }
+    .magic-emoji { font-size: 2.8rem; line-height: 1; margin-bottom: 12px; }
+
+    /* Skeleton loading */
+    .skeleton {
+      background: linear-gradient(90deg, var(--border-color,#e5e7eb) 25%, var(--bg,#f9fafb) 50%, var(--border-color,#e5e7eb) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    /* Page title */
+    .dash-page-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-primary, #111827);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    [data-theme="dark"] .dash-page-title { color: #f9fafb; }
+
+    @media (max-width: 480px) {
+      .dash-page { padding: 20px 12px 48px; }
+      .login-card { padding: 24px 18px; }
+      .cta-card { flex-direction: column; align-items: flex-start; }
+      .profile-header { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== PAGE LOADER ===== -->
+<div class="page-loader" id="page-loader">
+  <div class="page-loader-inner">
+    <div class="spin"></div>
+    <span class="lang-en">Loading…</span>
+    <span class="lang-ar">جارٍ التحميل…</span>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo-side">
+      <a href="/" class="nav-logo">
+        <img src="/logo.png" alt="Auto Bazar">
+        <span class="nav-logo-text"><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="/" class="nav-link"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+      <a href="/privacy" class="nav-link"><span class="lang-en">Privacy</span><span class="lang-ar">الخصوصية</span></a>
+      <a href="/terms" class="nav-link"><span class="lang-en">Terms</span><span class="lang-ar">الشروط</span></a>
+      <a href="/support" class="nav-link"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
+    </nav>
+    <div class="nav-actions-side">
+      <div class="desktop-only" style="display:flex;gap:12px;align-items:center;">
+        <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+        <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+      </div>
+      <div class="mobile-only">
+        <button id="theme-toggle-btn-m" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+        <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="/"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
+    <a href="/privacy"><span class="lang-en">Privacy</span><span class="lang-ar">الخصوصية</span></a>
+    <a href="/terms"><span class="lang-en">Terms</span><span class="lang-ar">الشروط</span></a>
+    <a href="/support"><span class="lang-en">Support</span><span class="lang-ar">الدعم</span></a>
+    <a href="/dashboard" class="active"><span class="lang-en">My Account</span><span class="lang-ar">حسابي</span></a>
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<div class="dash-page" id="dash-page">
+  <div class="dash-container" id="dash-container">
+
+    <!-- ====== VIEW: LOGIN ====== -->
+    <div id="view-login" style="display:none">
+      <div class="login-wrap">
+        <div class="login-card">
+          <div class="login-logo">
+            <img src="/logo.png" alt="Auto Bazar">
+          </div>
+          <h1 class="login-title">
+            <span class="lang-en">Sign in to your account</span>
+            <span class="lang-ar">سجّل الدخول إلى حسابك</span>
+          </h1>
+          <p class="login-sub">
+            <span class="lang-en">Use the same account you registered with in the Auto Bazar app.</span>
+            <span class="lang-ar">استخدم نفس الحساب الذي سجّلت به في تطبيق أوتو بازار.</span>
+          </p>
+
+          <div id="login-error" class="alert-box alert-err" style="display:none"></div>
+
+          <!-- Magic link sent -->
+          <div id="magic-sent" style="display:none">
+            <div class="magic-box">
+              <div class="magic-emoji">📧</div>
+              <p style="font-weight:800;font-size:1rem;margin-bottom:8px">
+                <span class="lang-en">Check your email!</span>
+                <span class="lang-ar">تحقق من بريدك الإلكتروني!</span>
+              </p>
+              <p style="font-size:0.85rem;color:#6b7280;line-height:1.6">
+                <span class="lang-en">Sign-in link sent to <strong id="magic-email-en"></strong>. Tap it to continue.</span>
+                <span class="lang-ar">تم الإرسال إلى <strong id="magic-email-ar"></strong>. اضغط على الرابط للمتابعة.</span>
+              </p>
+              <button class="btn-full btn-ghost" onclick="resetLogin()" style="margin-top:16px;max-width:200px;margin-inline:auto">
+                <span class="lang-en">Use different email</span>
+                <span class="lang-ar">استخدم بريدًا آخر</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Login form -->
+          <div id="login-form">
+            <!-- Google -->
+            <button class="btn-full btn-ghost" id="btn-google" onclick="doGoogleSignIn()">
+              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+              <span class="lang-en">Continue with Google</span>
+              <span class="lang-ar">المتابعة عبر Google</span>
+            </button>
+
+            <div class="divider-line">
+              <span class="lang-en">or email</span>
+              <span class="lang-ar">أو البريد الإلكتروني</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="l-email">
+                <span class="lang-en">Email address</span>
+                <span class="lang-ar">البريد الإلكتروني</span>
+              </label>
+              <input type="email" id="l-email" class="form-input"
+                placeholder="you@example.com" autocomplete="email" inputmode="email"
+                onkeydown="if(event.key==='Enter') document.getElementById('l-pass').focus()">
+            </div>
+
+            <!-- Password area -->
+            <div id="pass-area">
+              <div class="form-group">
+                <label class="form-label" for="l-pass">
+                  <span class="lang-en">Password</span>
+                  <span class="lang-ar">كلمة المرور</span>
+                </label>
+                <input type="password" id="l-pass" class="form-input"
+                  autocomplete="current-password"
+                  onkeydown="if(event.key==='Enter') doPasswordSignIn()">
+              </div>
+              <button class="btn-full btn-green" id="btn-pass" onclick="doPasswordSignIn()">
+                <span class="lang-en">Sign in</span>
+                <span class="lang-ar">تسجيل الدخول</span>
+              </button>
+              <p style="text-align:center;margin-top:12px;font-size:0.82rem;color:#6b7280">
+                <span class="lang-en">No password? <button class="link-btn" onclick="showMagicArea()">Send me a sign-in link</button></span>
+                <span class="lang-ar">لا تملك كلمة مرور؟ <button class="link-btn" onclick="showMagicArea()">أرسل لي رابط دخول</button></span>
+              </p>
+            </div>
+
+            <!-- Magic link area -->
+            <div id="magic-area" style="display:none">
+              <button class="btn-full btn-green" id="btn-magic" onclick="doMagicLink()">
+                <span class="lang-en">Send sign-in link</span>
+                <span class="lang-ar">إرسال رابط الدخول</span>
+              </button>
+              <p style="text-align:center;margin-top:12px;font-size:0.82rem;color:#6b7280">
+                <span class="lang-en"><button class="link-btn" onclick="showPassArea()">Back to password sign-in</button></span>
+                <span class="lang-ar"><button class="link-btn" onclick="showPassArea()">العودة لتسجيل الدخول بكلمة المرور</button></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== VIEW: DASHBOARD ====== -->
+    <div id="view-dashboard" style="display:none">
+
+      <!-- Profile header card -->
+      <div class="dash-card">
+        <div class="profile-header">
+          <div class="avatar" id="user-avatar">?</div>
+          <div class="profile-info">
+            <div class="profile-name" id="user-name">—</div>
+            <div class="profile-email" id="user-email">—</div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn-signout" onclick="doSignOut()">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+              </svg>
+              <span class="lang-en">Sign out</span>
+              <span class="lang-ar">خروج</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="stat-grid">
+        <!-- Plan -->
+        <div class="stat-card highlight" id="stat-plan">
+          <div class="stat-icon stat-icon-plan">🏷️</div>
+          <div class="stat-label">
+            <span class="lang-en">Current Plan</span>
+            <span class="lang-ar">الخطة الحالية</span>
+          </div>
+          <div class="stat-value" id="stat-plan-value">—</div>
+          <div class="stat-sub" id="stat-plan-sub"></div>
+        </div>
+
+        <!-- Credits -->
+        <div class="stat-card" id="stat-credits">
+          <div class="stat-icon stat-icon-credits">🎫</div>
+          <div class="stat-label">
+            <span class="lang-en">Listing Credits</span>
+            <span class="lang-ar">أرصدة الإعلان</span>
+          </div>
+          <div class="stat-value" id="stat-credits-value">—</div>
+          <div class="stat-sub">
+            <span class="lang-en">available</span>
+            <span class="lang-ar">متاح</span>
+          </div>
+        </div>
+
+        <!-- Expiry -->
+        <div class="stat-card" id="stat-expiry">
+          <div class="stat-icon stat-icon-expiry">📅</div>
+          <div class="stat-label">
+            <span class="lang-en">Valid Until</span>
+            <span class="lang-ar">صالح حتى</span>
+          </div>
+          <div class="stat-value" id="stat-expiry-value">—</div>
+          <div class="stat-sub" id="stat-expiry-sub"></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-card" id="cta-upgrade">
+        <div class="cta-text-block">
+          <div class="cta-title" id="cta-title">
+            <span class="lang-en">Want more listings?</span>
+            <span class="lang-ar">تريد المزيد من الإعلانات؟</span>
+          </div>
+          <div class="cta-sub" id="cta-sub">
+            <span class="lang-en">Buy credits or upgrade to Monthly Unlimited.</span>
+            <span class="lang-ar">اشترِ أرصدة أو ترقّ إلى الخطة الشهرية غير المحدودة.</span>
+          </div>
+        </div>
+        <a href="/payment" class="btn-cta">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+          <span class="lang-en">Buy / Upgrade</span>
+          <span class="lang-ar">شراء / ترقية</span>
+        </a>
+      </div>
+
+      <!-- Recent transactions -->
+      <div class="dash-card">
+        <div class="section-title">
+          <span class="lang-en">Recent Transactions</span>
+          <span class="lang-ar">آخر المعاملات</span>
+        </div>
+        <div class="tx-list" id="tx-list">
+          <!-- Skeleton rows while loading -->
+          <div class="tx-row" id="tx-skeleton-1">
+            <div class="skeleton" style="width:32px;height:32px;border-radius:50%;flex-shrink:0"></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+              <div class="skeleton" style="width:60%;height:13px"></div>
+              <div class="skeleton" style="width:40%;height:10px"></div>
+            </div>
+          </div>
+          <div class="tx-row" id="tx-skeleton-2">
+            <div class="skeleton" style="width:32px;height:32px;border-radius:50%;flex-shrink:0"></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+              <div class="skeleton" style="width:50%;height:13px"></div>
+              <div class="skeleton" style="width:35%;height:10px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /view-dashboard -->
+
+  </div>
+</div>
+
+<script src="js/theme.js"></script>
+<script src="js/lang.js"></script>
+
+<script>
+// ===== Language helpers =====
+function gl(){ return localStorage.getItem('lang') || 'en'; }
+function te(en, ar){ return gl()==='ar' ? ar : en; }
+
+// ===== UI helpers =====
+function showLoader(v){ document.getElementById('page-loader').classList.toggle('show', v); }
+function showEl(id, v){ document.getElementById(id).style.display = v ? '' : 'none'; }
+function setEl(id, txt){ var el=document.getElementById(id); if(el) el.textContent=txt; }
+function showErr(id, msg){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=msg||''; el.style.display=msg?'':'none';
+}
+function setBtnLoading(id, on){
+  var btn=document.getElementById(id); if(!btn) return;
+  btn.disabled=on;
+  if(on){ btn.dataset.h=btn.innerHTML; btn.innerHTML='<div class="spin"></div>'; }
+  else if(btn.dataset.h){ btn.innerHTML=btn.dataset.h; delete btn.dataset.h; }
+}
+
+window.showMagicArea = function(){
+  showEl('pass-area',false); showEl('magic-area',true); showErr('login-error','');
+};
+window.showPassArea = function(){
+  showEl('magic-area',false); showEl('pass-area',true); showErr('login-error','');
+};
+window.resetLogin = function(){
+  showEl('magic-sent',false); showEl('login-form',true);
+  document.getElementById('l-email').value='';
+  document.getElementById('l-pass').value='';
+  showEl('pass-area',true); showEl('magic-area',false);
+  setBtnLoading('btn-pass',false); setBtnLoading('btn-magic',false);
+};
+</script>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+const SUPABASE_URL      = 'https://vlstvqymwarvbindpotv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsc3R2cXltd2FydmJpbmRwb3R2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzOTkwMzgsImV4cCI6MjA4Nzk3NTAzOH0.jVIHcgd5UBKm_jWw6g_76CDwpvkn1A73uuXrJdlJQMk';
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentUser = null;
+
+// ===== Auth actions =====
+window.doGoogleSignIn = async function(){
+  showErr('login-error','');
+  setBtnLoading('btn-google',true);
+  try {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.href }
+    });
+    if(error) throw error;
+  } catch(e){
+    setBtnLoading('btn-google',false);
+    showErr('login-error', e.message || te('Google sign-in failed.','فشل تسجيل الدخول عبر Google.'));
+  }
+};
+
+window.doPasswordSignIn = async function(){
+  const email = document.getElementById('l-email').value.trim();
+  const pass  = document.getElementById('l-pass').value;
+  showErr('login-error','');
+  if(!email || !email.includes('@')){
+    showErr('login-error', te('Please enter a valid email address.','الرجاء إدخال بريد إلكتروني صحيح.')); return;
+  }
+  if(!pass){
+    showErr('login-error', te('Please enter your password.','الرجاء إدخال كلمة المرور.')); return;
+  }
+  setBtnLoading('btn-pass',true);
+  try {
+    const { error } = await supabase.auth.signInWithPassword({ email, password: pass });
+    if(error) throw error;
+  } catch(e){
+    setBtnLoading('btn-pass',false);
+    const msg = (e.message||'').toLowerCase();
+    showErr('login-error',
+      msg.includes('invalid') || msg.includes('credentials')
+        ? te('Incorrect email or password.','البريد الإلكتروني أو كلمة المرور غير صحيحة.')
+        : e.message || te('Sign-in failed. Please try again.','فشل تسجيل الدخول. حاول مرة أخرى.')
+    );
+  }
+};
+
+window.doMagicLink = async function(){
+  const email = document.getElementById('l-email').value.trim();
+  showErr('login-error','');
+  if(!email || !email.includes('@')){
+    showErr('login-error', te('Please enter a valid email address.','الرجاء إدخال بريد إلكتروني صحيح.')); return;
+  }
+  setBtnLoading('btn-magic',true);
+  try {
+    const { error } = await supabase.auth.signInWithOtp({
+      email, options: { emailRedirectTo: window.location.href }
+    });
+    if(error) throw error;
+    document.getElementById('magic-email-en').textContent = email;
+    document.getElementById('magic-email-ar').textContent = email;
+    showEl('login-form',false);
+    showEl('magic-sent',true);
+  } catch(e){
+    setBtnLoading('btn-magic',false);
+    showErr('login-error', e.message || te('Failed to send link. Try again.','فشل إرسال الرابط. حاول مرة أخرى.'));
+  }
+};
+
+window.doSignOut = async function(){
+  showLoader(true);
+  await supabase.auth.signOut();
+  currentUser = null;
+  showLoader(false);
+  showView('login');
+};
+
+// ===== Load profile =====
+async function loadProfile(user){
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('full_name, email, avatar_url, subscription_type, subscription_ends_at, listing_credits')
+    .eq('id', user.id)
+    .single();
+
+  return profile || {
+    full_name: null,
+    email: user.email || user.phone || '',
+    avatar_url: null,
+    subscription_type: 'free',
+    subscription_ends_at: null,
+    listing_credits: 0,
+  };
+}
+
+// ===== Load transactions =====
+async function loadTransactions(userId){
+  const { data } = await supabase
+    .from('transactions')
+    .select('id, type, amount, status, created_at')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(5);
+  return data || [];
+}
+
+// ===== Render dashboard =====
+function renderDashboard(user, profile, transactions){
+  // Avatar
+  const avatarEl = document.getElementById('user-avatar');
+  const displayName = profile.full_name || profile.email || user.email || '';
+  const initial = displayName.charAt(0).toUpperCase() || '?';
+  if(profile.avatar_url){
+    avatarEl.innerHTML = `<img src="${profile.avatar_url}" alt="">`;
+  } else {
+    avatarEl.textContent = initial;
+  }
+
+  // Name / email
+  setEl('user-name', profile.full_name || profile.email || user.email || te('User','مستخدم'));
+  setEl('user-email', profile.email || user.email || '');
+
+  // Plan
+  const planType = (profile.subscription_type || 'free').toLowerCase();
+  let planLabel, planSub, planClass;
+  if(planType === 'monthly'){
+    planLabel = te('Monthly Unlimited','شهري غير محدود');
+    planClass = 'plan-monthly';
+    planSub   = '✓ ' + te('Active','فعّال');
+  } else if(planType === 'pay_per_piece' || planType === 'credits'){
+    planLabel = te('Pay Per Piece','دفع لكل قطعة');
+    planClass = 'plan-credits';
+    planSub   = '';
+  } else {
+    planLabel = te('Free','مجاني');
+    planClass = 'plan-free';
+    planSub   = te('No active plan','لا توجد خطة فعّالة');
+  }
+  const planValEl = document.getElementById('stat-plan-value');
+  planValEl.textContent = planLabel;
+  planValEl.className   = 'stat-value ' + planClass;
+  setEl('stat-plan-sub', planSub);
+
+  // Credits
+  setEl('stat-credits-value', String(profile.listing_credits ?? 0));
+
+  // Expiry
+  const expiryEl    = document.getElementById('stat-expiry-value');
+  const expirySubEl = document.getElementById('stat-expiry-sub');
+  if(profile.subscription_ends_at){
+    const d = new Date(profile.subscription_ends_at);
+    const now = new Date();
+    const daysLeft = Math.ceil((d - now) / 86400000);
+    expiryEl.textContent = d.toLocaleDateString(gl()==='ar' ? 'ar-SY' : 'en-GB', { day:'2-digit', month:'short', year:'numeric' });
+    if(daysLeft > 0){
+      expirySubEl.textContent = te(`${daysLeft} day${daysLeft===1?'':'s'} left`, `${daysLeft} يوم متبقي`);
+      expirySubEl.style.color = daysLeft <= 5 ? '#d97706' : '';
+    } else {
+      expirySubEl.textContent = te('Expired','منتهية الصلاحية');
+      expirySubEl.style.color = '#dc2626';
+    }
+  } else {
+    expiryEl.textContent    = '—';
+    expirySubEl.textContent = te('No expiry','غير محدود');
+  }
+
+  // CTA messaging based on plan
+  if(planType === 'monthly'){
+    document.getElementById('cta-title').innerHTML =
+      `<span class="lang-en">Renew or add credits before it expires</span><span class="lang-ar">جدّد أو أضف أرصدة قبل انتهاء الصلاحية</span>`;
+    document.getElementById('cta-sub').innerHTML =
+      `<span class="lang-en">Keep your listings going after the month ends.</span><span class="lang-ar">استمر في نشر إعلاناتك بعد انتهاء الشهر.</span>`;
+  }
+  // Re-apply lang so new spans show correctly
+  if(typeof setLang === 'function') setLang(localStorage.getItem('lang')||'en');
+
+  // Transactions
+  renderTransactions(transactions);
+}
+
+function renderTransactions(txs){
+  const list = document.getElementById('tx-list');
+  if(!txs || txs.length === 0){
+    list.innerHTML = `<div class="tx-empty">
+      <span class="lang-en">No transactions yet.</span>
+      <span class="lang-ar">لا توجد معاملات بعد.</span>
+    </div>`;
+    if(typeof setLang === 'function') setLang(localStorage.getItem('lang')||'en');
+    return;
+  }
+
+  list.innerHTML = txs.map(tx => {
+    const statusClass = tx.status === 'completed' ? 'tx-status-completed'
+                      : tx.status === 'pending'   ? 'tx-status-pending'
+                      : 'tx-status-failed';
+    const statusLabel = tx.status === 'completed' ? te('Paid','مدفوع')
+                      : tx.status === 'pending'   ? te('Pending','معلّق')
+                      : te('Failed','فاشل');
+    const iconClass   = tx.status === 'completed' ? 'tx-icon-ok'
+                      : tx.status === 'pending'   ? 'tx-icon-pending'
+                      : 'tx-icon-fail';
+    const icon        = tx.status === 'completed' ? '✓' : tx.status === 'pending' ? '⏳' : '✕';
+
+    const typeLabel = tx.type === 'subscription_monthly' ? te('Monthly Unlimited','شهري غير محدود')
+                    : tx.type === 'subscription_pay_per_piece' ? te('Listing Credits','أرصدة إعلان')
+                    : tx.type || te('Payment','دفعة');
+
+    const date = new Date(tx.created_at).toLocaleDateString(
+      gl()==='ar' ? 'ar-SY' : 'en-GB',
+      { day:'2-digit', month:'short', year:'numeric' }
+    );
+
+    return `<div class="tx-row">
+      <div class="tx-icon ${iconClass}" style="font-size:0.75rem;font-weight:700">${icon}</div>
+      <div class="tx-info">
+        <div class="tx-type">${typeLabel}</div>
+        <div class="tx-date">${date}</div>
+      </div>
+      <div class="tx-amount">$${tx.amount}</div>
+      <span class="tx-status ${statusClass}">${statusLabel}</span>
+    </div>`;
+  }).join('');
+}
+
+// ===== View switching =====
+function showView(view){
+  showEl('view-login',     view === 'login');
+  showEl('view-dashboard', view === 'dashboard');
+}
+
+// ===== Auth listener =====
+supabase.auth.onAuthStateChange(async (event, session) => {
+  if(session && session.user){
+    currentUser = session.user;
+    if(event === 'SIGNED_IN'){
+      showLoader(true);
+      const [profile, txs] = await Promise.all([
+        loadProfile(session.user),
+        loadTransactions(session.user.id)
+      ]);
+      showLoader(false);
+      renderDashboard(session.user, profile, txs);
+      showView('dashboard');
+    }
+  } else if(event === 'SIGNED_OUT'){
+    currentUser = null;
+    showView('login');
+  }
+});
+
+// ===== Init =====
+(async function init(){
+  showLoader(true);
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if(session && session.user){
+      currentUser = session.user;
+      const [profile, txs] = await Promise.all([
+        loadProfile(session.user),
+        loadTransactions(session.user.id)
+      ]);
+      renderDashboard(session.user, profile, txs);
+      showView('dashboard');
+    } else {
+      showView('login');
+    }
+  } catch(e){
+    showView('login');
+  } finally {
+    showLoader(false);
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <title>Auto Bazar | Upgrade Plan</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#059669" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:        #059669;
+      --green-light:  #10b981;
+      --green-dark:   #047857;
+      --bg:           #ffffff;
+      --bg2:          #f9fafb;
+      --bg3:          #f3f4f6;
+      --border:       #e5e7eb;
+      --text:         #111827;
+      --text2:        #6b7280;
+      --text3:        #9ca3af;
+      --card:         #ffffff;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md:    0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+      --radius:       14px;
+    }
+    [data-theme="dark"] {
+      --bg:           #0a0a0f;
+      --bg2:          #111118;
+      --bg3:          #1a1a24;
+      --border:       #2a2a38;
+      --text:         #f9fafb;
+      --text2:        #9ca3af;
+      --text3:        #6b7280;
+      --card:         #15151f;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.4);
+      --shadow-md:    0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s, color 0.2s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo img { height: 30px; width: auto; }
+    .nav-logo-text { font-weight: 800; font-size: 1.05rem; color: var(--green); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .btn-icon {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+    }
+    .btn-icon:hover { background: var(--border); }
+
+    /* ========== MAIN ========== */
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 16px 56px;
+    }
+    .container { width: 100%; max-width: 448px; }
+
+    /* ========== SCREENS ========== */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* ========== CARD ========== */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-md);
+    }
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .card-subtitle {
+      font-size: 0.88rem;
+      color: var(--text2);
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+
+    /* ========== FORM ========== */
+    label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    input[type="email"],
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(5,150,105,0.13);
+    }
+    .field-group { margin-bottom: 16px; }
+    .field-hint { font-size: 0.77rem; color: var(--text3); margin-top: 5px; }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 9px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s, background 0.15s;
+    }
+    .btn:active:not(:disabled) { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover:not(:disabled) { background: var(--green-dark); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover:not(:disabled) { background: var(--bg3); }
+    .btn-google {
+      background: var(--bg3);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-google:hover:not(:disabled) { background: var(--border); }
+    .btn-sm { width: auto; padding: 7px 14px; font-size: 0.82rem; }
+
+    /* ========== DIVIDER ========== */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0;
+      color: var(--text3);
+      font-size: 0.8rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ========== ALERTS ========== */
+    .alert {
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 0.875rem;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .alert-error {
+      background: rgba(239,68,68,0.09);
+      border: 1px solid rgba(239,68,68,0.22);
+      color: #dc2626;
+    }
+    [data-theme="dark"] .alert-error { color: #f87171; }
+    .alert-success {
+      background: rgba(5,150,105,0.09);
+      border: 1px solid rgba(5,150,105,0.22);
+      color: var(--green-dark);
+    }
+    [data-theme="dark"] .alert-success { color: var(--green-light); }
+    .alert-info {
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.2);
+      color: #2563eb;
+    }
+    [data-theme="dark"] .alert-info { color: #60a5fa; }
+
+    /* ========== SPINNER ========== */
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2.5px solid rgba(255,255,255,0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .spinner-green {
+      border-color: rgba(5,150,105,0.25);
+      border-top-color: var(--green);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ========== LOADING OVERLAY ========== */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .loading-overlay.show { display: flex; }
+    .loading-inner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-md);
+    }
+    .loading-inner .spinner { border-color: rgba(5,150,105,0.25); border-top-color: var(--green); }
+
+    /* ========== USER BAR ========== */
+    .user-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    .user-email {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+
+    /* ========== PLAN CARDS ========== */
+    .plans { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+    .plan-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      background: var(--card);
+      position: relative;
+    }
+    .plan-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(5,150,105,0.10);
+    }
+    .plan-card.featured { border-color: var(--green); }
+    .plan-badge {
+      position: absolute;
+      top: -11px;
+      right: 16px;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    [dir="rtl"] .plan-badge { right: auto; left: 16px; }
+    .plan-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .plan-name { font-weight: 700; font-size: 0.97rem; color: var(--text); }
+    .plan-price { font-weight: 800; font-size: 1.15rem; color: var(--green); flex-shrink: 0; }
+    .plan-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+
+    /* ========== PAYMENT SCREEN ========== */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 14px;
+      font-family: inherit;
+      transition: color 0.15s;
+    }
+    .back-btn:hover { color: var(--text); }
+    [dir="rtl"] .back-btn svg { transform: scaleX(-1); }
+
+    .amount-box {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .amount-label { font-size: 0.82rem; opacity: 0.82; margin-bottom: 4px; }
+    .amount-value { font-size: 2.1rem; font-weight: 800; line-height: 1; }
+    .amount-plan { font-size: 0.8rem; opacity: 0.78; margin-top: 5px; }
+
+    .instruction-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+    .inst-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .inst-step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { font-size: 0.875rem; color: var(--text); line-height: 1.5; }
+
+    .address-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg3);
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+    }
+    .address-text {
+      flex: 1;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+      color: var(--text);
+      word-break: break-all;
+      user-select: all;
+      line-height: 1.4;
+    }
+    .copy-btn {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 7px 13px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: var(--green-dark); }
+
+    /* ========== SUCCESS ========== */
+    .success-wrap { text-align: center; }
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(5,150,105,0.3);
+    }
+    .success-icon svg { width: 36px; height: 36px; color: #fff; }
+    .success-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    .success-msg {
+      color: var(--text2);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .app-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .app-badge {
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 10px;
+      padding: 11px 20px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: opacity 0.15s;
+    }
+    .app-badge:hover { opacity: 0.75; }
+
+    /* ========== MAGIC LINK SENT ========== */
+    .magic-sent { text-align: center; padding: 8px 0 4px; }
+    .magic-icon { font-size: 3rem; margin-bottom: 12px; line-height: 1; }
+
+    /* ========== LINK BUTTON ========== */
+    .link-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--green);
+      font-weight: 600;
+      font-size: inherit;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .link-btn:hover { color: var(--green-dark); }
+
+    /* ========== MISC ========== */
+    .mt-12 { margin-top: 12px; }
+    .mt-16 { margin-top: 16px; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 480px) {
+      .main { padding: 16px 12px 40px; }
+      .card { padding: 22px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== LOADING OVERLAY ========== -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-inner">
+    <div class="spinner"></div>
+    <span id="loading-label">
+      <span class="lang-en">Please wait…</span>
+      <span class="lang-ar">يرجى الانتظار…</span>
+    </span>
+  </div>
+</div>
+
+<!-- ========== NAVBAR ========== -->
+<header class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/logo.png" alt="Auto Bazar">
+    <span class="nav-logo-text">
+      <span class="lang-en">Auto Bazar</span>
+      <span class="lang-ar">أوتو بازار</span>
+    </span>
+  </a>
+  <div class="nav-actions">
+    <button class="btn-icon" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+    <button class="btn-icon lang-toggle" onclick="toggleLang()"></button>
+  </div>
+</header>
+
+<!-- ========== MAIN ========== -->
+<main class="main">
+  <div class="container">
+
+    <!-- ====== SCREEN: LOGIN ====== -->
+    <div class="screen active" id="screen-login">
+      <div class="card">
+        <h1 class="card-title">
+          <span class="lang-en">Sign in to upgrade</span>
+          <span class="lang-ar">سجّل الدخول للترقية</span>
+        </h1>
+        <p class="card-subtitle">
+          <span class="lang-en">Use the same account you registered with in the Auto Bazar app.</span>
+          <span class="lang-ar">استخدم نفس الحساب الذي سجّلت به في تطبيق أوتو بازار.</span>
+        </p>
+
+        <div id="login-error" class="alert alert-error" style="display:none"></div>
+
+        <!-- Magic link sent confirmation -->
+        <div id="magic-sent-box" style="display:none">
+          <div class="magic-sent">
+            <div class="magic-icon">📧</div>
+            <p style="font-weight:800;font-size:1.05rem;margin-bottom:8px">
+              <span class="lang-en">Check your email!</span>
+              <span class="lang-ar">تحقق من بريدك الإلكتروني!</span>
+            </p>
+            <p style="font-size:0.87rem;color:var(--text2);line-height:1.6">
+              <span class="lang-en">We sent a sign-in link to <strong id="sent-email-en"></strong>. Tap it to continue.</span>
+              <span class="lang-ar">أرسلنا رابط تسجيل الدخول إلى <strong id="sent-email-ar"></strong>. اضغط عليه للمتابعة.</span>
+            </p>
+            <button class="btn btn-outline mt-16" onclick="resetLoginForm()" style="max-width:200px;margin:16px auto 0">
+              <span class="lang-en">Use a different email</span>
+              <span class="lang-ar">استخدم بريدًا آخر</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Login form -->
+        <div id="login-form-area">
+          <button class="btn btn-google" id="btn-google" onclick="signInGoogle()">
+            <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            <span class="lang-en">Continue with Google</span>
+            <span class="lang-ar">المتابعة عبر Google</span>
+          </button>
+
+          <div class="divider">
+            <span class="lang-en">or use email</span>
+            <span class="lang-ar">أو عبر البريد الإلكتروني</span>
+          </div>
+
+          <div class="field-group">
+            <label for="email-input">
+              <span class="lang-en">Email address</span>
+              <span class="lang-ar">البريد الإلكتروني</span>
+            </label>
+            <input type="email" id="email-input"
+              placeholder="you@example.com"
+              autocomplete="email"
+              inputmode="email"
+              onkeydown="if(event.key==='Enter') document.getElementById('password-input').focus()">
+          </div>
+
+          <!-- Password mode (default) -->
+          <div id="password-area">
+            <div class="field-group">
+              <label for="password-input">
+                <span class="lang-en">Password</span>
+                <span class="lang-ar">كلمة المرور</span>
+              </label>
+              <input type="password" id="password-input"
+                autocomplete="current-password"
+                onkeydown="if(event.key==='Enter') signInPassword()">
+            </div>
+
+            <button class="btn btn-primary" id="btn-password" onclick="signInPassword()">
+              <span class="lang-en">Sign in</span>
+              <span class="lang-ar">تسجيل الدخول</span>
+            </button>
+
+            <p style="text-align:center;margin-top:14px;font-size:0.83rem;color:var(--text2)">
+              <span class="lang-en">No password? <button class="link-btn" onclick="switchToMagicLink()">Send me a sign-in link</button></span>
+              <span class="lang-ar">لا تملك كلمة مرور؟ <button class="link-btn" onclick="switchToMagicLink()">أرسل لي رابط دخول</button></span>
+            </p>
+          </div>
+
+          <!-- Magic link mode (fallback) -->
+          <div id="magic-area" style="display:none">
+            <button class="btn btn-primary" id="btn-magic" onclick="sendMagicLink()">
+              <span class="lang-en">Send sign-in link</span>
+              <span class="lang-ar">إرسال رابط الدخول</span>
+            </button>
+
+            <p style="text-align:center;margin-top:14px;font-size:0.83rem;color:var(--text2)">
+              <span class="lang-en"><button class="link-btn" onclick="switchToPassword()">Back to password sign-in</button></span>
+              <span class="lang-ar"><button class="link-btn" onclick="switchToPassword()">العودة لتسجيل الدخول بكلمة المرور</button></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== SCREEN: PLANS ====== -->
+    <div class="screen" id="screen-plans">
+      <!-- User bar -->
+      <div class="user-bar">
+        <span class="user-email" id="user-email-display"></span>
+        <button class="btn btn-outline btn-sm" onclick="signOut()" style="flex-shrink:0">
+          <span class="lang-en">Sign out</span>
+          <span class="lang-ar">خروج</span>
+        </button>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">
+          <span class="lang-en">Choose a plan</span>
+          <span class="lang-ar">اختر خطتك</span>
+        </h2>
+        <p class="card-subtitle">
+          <span class="lang-en">Prices in USD. Pay once via ShamCash — your account upgrades instantly.</span>
+          <span class="lang-ar">الأسعار بالدولار الأمريكي. ادفع مرة واحدة عبر شام كاش — يتحدث حسابك فوراً.</span>
+        </p>
+
+        <div id="plans-error" class="alert alert-error" style="display:none"></div>
+
+        <div class="plans">
+          <!-- Monthly Unlimited -->
+          <div class="plan-card featured" onclick="selectPlan('monthly')" role="button" tabindex="0">
+            <span class="plan-badge">
+              <span class="lang-en">Most popular</span>
+              <span class="lang-ar">الأكثر طلباً</span>
+            </span>
+            <div class="plan-header">
+              <span class="plan-name">
+                <span class="lang-en">Monthly Unlimited</span>
+                <span class="lang-ar">شهري غير محدود</span>
+              </span>
+              <span class="plan-price">$10</span>
+            </div>
+            <p class="plan-desc">
+              <span class="lang-en">30-day unlimited listings — post as many cars or parts as you want.</span>
+              <span class="lang-ar">إعلانات غير محدودة لمدة 30 يوماً — انشر أي عدد من السيارات والقطع.</span>
+            </p>
+          </div>
+
+          <!-- 10 Credits -->
+          <div class="plan-card" onclick="selectPlan('pay10')" role="button" tabindex="0">
+            <div class="plan-header">
+              <span class="plan-name">
+                <span class="lang-en">10 Listing Credits</span>
+                <span class="lang-ar">10 رصيد إعلان</span>
+              </span>
+              <span class="plan-price">$10</span>
+            </div>
+            <p class="plan-desc">
+              <span class="lang-en">Add 10 credits to your account. Use them anytime you want to post.</span>
+              <span class="lang-ar">أضف 10 أرصدة إلى حسابك. استخدمها متى تشاء لنشر إعلاناتك.</span>
+            </p>
+          </div>
+
+          <!-- 3 Credits -->
+          <div class="plan-card" onclick="selectPlan('pay3')" role="button" tabindex="0">
+            <div class="plan-header">
+              <span class="plan-name">
+                <span class="lang-en">3 Listing Credits</span>
+                <span class="lang-ar">3 أرصدة إعلان</span>
+              </span>
+              <span class="plan-price">$3</span>
+            </div>
+            <p class="plan-desc">
+              <span class="lang-en">Add 3 credits to your account — perfect for occasional sellers.</span>
+              <span class="lang-ar">أضف 3 أرصدة إلى حسابك — مثالية للبيع من وقت لآخر.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== SCREEN: PAYMENT ====== -->
+    <div class="screen" id="screen-payment">
+      <button class="back-btn" onclick="goBackToPlans()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        <span class="lang-en">Back to plans</span>
+        <span class="lang-ar">العودة للخطط</span>
+      </button>
+
+      <div class="card">
+        <!-- Amount display -->
+        <div class="amount-box">
+          <p class="amount-label">
+            <span class="lang-en">Amount to pay</span>
+            <span class="lang-ar">المبلغ المطلوب</span>
+          </p>
+          <p class="amount-value" id="amount-display">$10</p>
+          <p class="amount-plan" id="plan-display-label"></p>
+        </div>
+
+        <div id="payment-error" class="alert alert-error" style="display:none"></div>
+
+        <!-- Step 1 & 2: ShamCash instructions -->
+        <div class="instruction-box">
+          <div class="inst-step">
+            <span class="step-num">1</span>
+            <span class="step-text">
+              <span class="lang-en">Open your <strong>ShamCash</strong> app and send exactly <strong id="inst-amount-en"></strong> USD.</span>
+              <span class="lang-ar">افتح تطبيق <strong>شام كاش</strong> وأرسل مبلغ <strong id="inst-amount-ar"></strong> دولار بالضبط.</span>
+            </span>
+          </div>
+          <div class="inst-step">
+            <span class="step-num">2</span>
+            <span class="step-text">
+              <span class="lang-en">Send to this merchant account address:</span>
+              <span class="lang-ar">أرسل إلى عنوان حساب التاجر التالي:</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="address-box">
+          <span class="address-text" id="merchant-address-display">ff802a20af7147b2ed601050dd18c360</span>
+          <button class="copy-btn" onclick="copyAddress()" id="copy-btn">
+            <span class="lang-en" id="copy-text-en">Copy</span>
+            <span class="lang-ar" id="copy-text-ar">نسخ</span>
+          </button>
+        </div>
+
+        <!-- Step 3: TX ID input -->
+        <div class="instruction-box" style="margin-bottom:18px">
+          <div class="inst-step" style="margin-bottom:0">
+            <span class="step-num">3</span>
+            <span class="step-text">
+              <span class="lang-en">After sending, copy your <strong>Transaction ID</strong> from ShamCash and paste it below.</span>
+              <span class="lang-ar">بعد الإرسال، انسخ <strong>رقم المعاملة</strong> من شام كاش والصقه في الحقل أدناه.</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="tx-input">
+            <span class="lang-en">ShamCash Transaction ID</span>
+            <span class="lang-ar">رقم معاملة شام كاش</span>
+          </label>
+          <input type="text" id="tx-input"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            autocomplete="off"
+            onkeydown="if(event.key==='Enter') verifyPayment()">
+          <p class="field-hint">
+            <span class="lang-en">Numbers only, 3–30 digits.</span>
+            <span class="lang-ar">أرقام فقط، من 3 إلى 30 خانة.</span>
+          </p>
+        </div>
+
+        <button class="btn btn-primary" id="btn-verify" onclick="verifyPayment()">
+          <span class="lang-en">Verify &amp; Confirm Payment</span>
+          <span class="lang-ar">التحقق وتأكيد الدفع</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ====== SCREEN: SUCCESS ====== -->
+    <div class="screen" id="screen-success">
+      <div class="card">
+        <div class="success-wrap">
+          <div class="success-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h2 class="success-title">
+            <span class="lang-en">Payment Confirmed! 🎉</span>
+            <span class="lang-ar">تم تأكيد الدفع! 🎉</span>
+          </h2>
+          <p class="success-msg">
+            <span class="lang-en">Your account has been upgraded successfully. Open the Auto Bazar app — your new plan is already active.</span>
+            <span class="lang-ar">تمت ترقية حسابك بنجاح. افتح تطبيق أوتو بازار — خطتك الجديدة فعّالة الآن.</span>
+          </p>
+          <div class="app-badges">
+            <a href="https://apps.apple.com/app/auto-bazar/id6745696961" class="app-badge" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.autobazarsyria.app" class="app-badge" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.36.6 1.24 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ========== THEME (inline, runs before paint) ========== -->
+<script>
+(function(){
+  var s=localStorage.getItem('ab-theme');
+  var d=window.matchMedia('(prefers-color-scheme:dark)').matches;
+  document.documentElement.setAttribute('data-theme', s||(d?'dark':'light'));
+})();
+
+function getTheme(){ return document.documentElement.getAttribute('data-theme')||'light'; }
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('ab-theme', t);
+  updateThemeIcon();
+}
+function toggleTheme(){ setTheme(getTheme()==='dark'?'light':'dark'); }
+function updateThemeIcon(){
+  var btn=document.getElementById('theme-toggle-btn');
+  if(!btn) return;
+  btn.innerHTML = getTheme()==='dark'
+    ? '<svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+    : '<svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+}
+document.addEventListener('DOMContentLoaded', updateThemeIcon);
+</script>
+
+<!-- ========== LANGUAGE ========== -->
+<script>
+var currentLang = localStorage.getItem('ab-lang') || (navigator.language && navigator.language.startsWith('ar') ? 'ar' : 'en');
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ab-lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('.lang-en').forEach(function(el){ el.style.display = lang==='en' ? '' : 'none'; });
+  document.querySelectorAll('.lang-ar').forEach(function(el){ el.style.display = lang==='ar' ? '' : 'none'; });
+  document.querySelectorAll('.lang-toggle').forEach(function(btn){ btn.textContent = lang==='en' ? 'عربي' : 'EN'; });
+  document.body.style.fontFamily = lang==='ar'
+    ? "'Noto Sans Arabic','Inter',sans-serif"
+    : "'Inter',sans-serif";
+  document.title = lang==='ar' ? 'أوتو بازار | ترقية الخطة' : 'Auto Bazar | Upgrade Plan';
+}
+
+function toggleLang(){ applyLang(currentLang==='en' ? 'ar' : 'en'); }
+document.addEventListener('DOMContentLoaded', function(){ applyLang(currentLang); });
+
+function getLang(){ return currentLang || 'en'; }
+</script>
+
+<!-- ========== APP LOGIC ========== -->
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+// ---- Config ----
+const SUPABASE_URL      = 'https://vlstvqymwarvbindpotv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsc3R2cXltd2FydmJpbmRwb3R2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzOTkwMzgsImV4cCI6MjA4Nzk3NTAzOH0.jVIHcgd5UBKm_jWw6g_76CDwpvkn1A73uuXrJdlJQMk';
+const MERCHANT_ADDRESS  = 'ff802a20af7147b2ed601050dd18c360';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ---- Plan definitions ----
+const PLANS = {
+  monthly: { amount: 10, planType: 'monthly',      creditsToAdd: null, labelEn: 'Monthly Unlimited',  labelAr: 'شهري غير محدود' },
+  pay10:   { amount: 10, planType: 'pay_per_piece', creditsToAdd: 10,   labelEn: '10 Listing Credits', labelAr: '10 رصيد إعلان'   },
+  pay3:    { amount:  3, planType: 'pay_per_piece', creditsToAdd:  3,   labelEn: '3 Listing Credits',  labelAr: '3 أرصدة إعلان'   },
+};
+
+// ---- App state ----
+let currentUser          = null;
+let selectedPlanKey      = null;
+let pendingTransactionId = null;
+
+// ---- UI helpers ----
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showOverlay(visible) {
+  document.getElementById('loading-overlay').classList.toggle('show', visible);
+}
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (msg) { el.textContent = msg; el.style.display = ''; }
+  else { el.style.display = 'none'; el.textContent = ''; }
+}
+
+function setButtonLoading(id, loading) {
+  const btn = document.getElementById(id);
+  if (!btn) return;
+  btn.disabled = loading;
+  if (loading) {
+    btn.dataset.origHtml = btn.innerHTML;
+    btn.innerHTML = '<div class="spinner"></div>';
+  } else if (btn.dataset.origHtml) {
+    btn.innerHTML = btn.dataset.origHtml;
+    delete btn.dataset.origHtml;
+  }
+}
+
+// ---- Expose functions to global scope (called from inline onclick) ----
+
+window.switchToMagicLink = function() {
+  document.getElementById('password-area').style.display = 'none';
+  document.getElementById('magic-area').style.display    = '';
+  showError('login-error', '');
+};
+
+window.switchToPassword = function() {
+  document.getElementById('magic-area').style.display    = 'none';
+  document.getElementById('password-area').style.display = '';
+  showError('login-error', '');
+};
+
+window.signInPassword = async function() {
+  const email    = document.getElementById('email-input').value.trim();
+  const password = document.getElementById('password-input').value;
+  const lang     = getLang();
+  showError('login-error', '');
+
+  if (!email || !email.includes('@')) {
+    showError('login-error', lang==='ar' ? 'الرجاء إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.');
+    return;
+  }
+  if (!password) {
+    showError('login-error', lang==='ar' ? 'الرجاء إدخال كلمة المرور.' : 'Please enter your password.');
+    return;
+  }
+
+  setButtonLoading('btn-password', true);
+  try {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    // onAuthStateChange will handle redirect to plans screen
+  } catch(e) {
+    setButtonLoading('btn-password', false);
+    const msg = e.message || '';
+    // Give a friendlier message for wrong credentials
+    if (msg.toLowerCase().includes('invalid') || msg.toLowerCase().includes('credentials')) {
+      showError('login-error', lang==='ar' ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة.' : 'Incorrect email or password.');
+    } else {
+      showError('login-error', msg || (lang==='ar' ? 'فشل تسجيل الدخول. حاول مرة أخرى.' : 'Sign-in failed. Please try again.'));
+    }
+  }
+};
+
+window.signInGoogle = async function() {
+  showError('login-error', '');
+  setButtonLoading('btn-google', true);
+  try {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.href }
+    });
+    if (error) throw error;
+    // Redirect will happen — keep button disabled
+  } catch(e) {
+    setButtonLoading('btn-google', false);
+    showError('login-error', e.message || (getLang()==='ar' ? 'فشل تسجيل الدخول عبر Google.' : 'Google sign-in failed.'));
+  }
+};
+
+window.sendMagicLink = async function() {
+  const email = document.getElementById('email-input').value.trim();
+  const lang  = getLang();
+  showError('login-error', '');
+  if (!email || !email.includes('@')) {
+    showError('login-error', lang==='ar' ? 'الرجاء إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.');
+    return;
+  }
+  setButtonLoading('btn-magic', true);
+  try {
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.href }
+    });
+    if (error) throw error;
+    // Show confirmation
+    document.getElementById('sent-email-en').textContent = email;
+    document.getElementById('sent-email-ar').textContent = email;
+    document.getElementById('login-form-area').style.display = 'none';
+    document.getElementById('magic-sent-box').style.display  = '';
+  } catch(e) {
+    setButtonLoading('btn-magic', false);
+    showError('login-error', e.message || (getLang()==='ar' ? 'فشل إرسال الرابط. حاول مرة أخرى.' : 'Failed to send link. Please try again.'));
+  }
+};
+
+window.resetLoginForm = function() {
+  document.getElementById('magic-sent-box').style.display  = 'none';
+  document.getElementById('login-form-area').style.display  = '';
+  document.getElementById('email-input').value    = '';
+  document.getElementById('password-input').value = '';
+  // Reset to password mode
+  document.getElementById('password-area').style.display = '';
+  document.getElementById('magic-area').style.display    = 'none';
+  setButtonLoading('btn-magic', false);
+  setButtonLoading('btn-password', false);
+};
+
+window.signOut = async function() {
+  await supabase.auth.signOut();
+  currentUser = null;
+  showScreen('screen-login');
+  window.resetLoginForm();
+};
+
+window.selectPlan = async function(planKey) {
+  const plan = PLANS[planKey];
+  const lang = getLang();
+  showError('plans-error', '');
+  selectedPlanKey = planKey;
+
+  // Populate payment screen
+  document.getElementById('amount-display').textContent    = '$' + plan.amount;
+  document.getElementById('inst-amount-en').textContent    = '$' + plan.amount;
+  document.getElementById('inst-amount-ar').textContent    = '$' + plan.amount;
+  document.getElementById('plan-display-label').textContent = lang==='ar' ? plan.labelAr : plan.labelEn;
+  document.getElementById('merchant-address-display').textContent = MERCHANT_ADDRESS;
+  document.getElementById('tx-input').value = '';
+  showError('payment-error', '');
+
+  // Create pending transaction
+  showOverlay(true);
+  try {
+    const { data, error } = await supabase
+      .from('transactions')
+      .insert({
+        user_id:        currentUser.id,
+        amount:         plan.amount,
+        type:           'subscription_' + plan.planType,
+        status:         'pending',
+        payment_method: 'sham_cash',
+      })
+      .select('id')
+      .single();
+
+    if (error) throw error;
+    pendingTransactionId = data.id;
+    showOverlay(false);
+    showScreen('screen-payment');
+  } catch(e) {
+    showOverlay(false);
+    showError('plans-error', (lang==='ar' ? 'خطأ: ' : 'Error: ') + (e.message || (lang==='ar' ? 'فشل إنشاء المعاملة.' : 'Failed to create transaction.')));
+  }
+};
+
+window.goBackToPlans = function() {
+  showScreen('screen-plans');
+};
+
+window.verifyPayment = async function() {
+  const txId = document.getElementById('tx-input').value.trim();
+  const lang = getLang();
+  showError('payment-error', '');
+
+  // Validate TX ID — numbers only, 3–30 digits
+  if (!txId || !/^\d{3,30}$/.test(txId)) {
+    showError('payment-error', lang==='ar'
+      ? 'الرجاء إدخال رقم معاملة صحيح (أرقام فقط، من 3 إلى 30 خانة).'
+      : 'Please enter a valid Transaction ID (numbers only, 3–30 digits).');
+    return;
+  }
+
+  setButtonLoading('btn-verify', true);
+
+  try {
+    // Step 3 — Verify ShamCash TX
+    const { data: verifyData, error: verifyError } = await supabase.functions.invoke('verify-sham-cash-tx', {
+      body: {
+        tx_id:           txId,
+        account_address: MERCHANT_ADDRESS,
+        transaction_id:  pendingTransactionId,
+      }
+    });
+
+    if (verifyError) throw verifyError;
+
+    if (!verifyData || !verifyData.found) {
+      throw new Error(lang==='ar'
+        ? 'لم يتم العثور على المعاملة. تأكد من أنك أرسلت إلى الحساب الصحيح وأدخلت رقم المعاملة الصحيح.'
+        : 'Transaction not found. Make sure you sent to the correct account and entered the right TX ID.');
+    }
+
+    // Step 4 — Confirm payment & upgrade account
+    const plan = PLANS[selectedPlanKey];
+    const confirmBody = {
+      transaction_id:    pendingTransactionId,
+      user_id:           currentUser.id,
+      plan:              plan.planType,
+      provider_reference: txId,
+    };
+    if (plan.creditsToAdd !== null) {
+      confirmBody.credits_to_add = plan.creditsToAdd;
+    }
+
+    const { data: confirmData, error: confirmError } = await supabase.functions.invoke('confirm-payment', {
+      body: confirmBody
+    });
+
+    if (confirmError) throw confirmError;
+    if (confirmData && confirmData.error) throw new Error(confirmData.error);
+
+    // ✅ Success
+    showScreen('screen-success');
+
+  } catch(e) {
+    setButtonLoading('btn-verify', false);
+    const defaultMsg = lang==='ar' ? 'حدث خطأ. الرجاء المحاولة مرة أخرى.' : 'Something went wrong. Please try again.';
+    showError('payment-error', e.message || defaultMsg);
+  }
+};
+
+window.copyAddress = function() {
+  navigator.clipboard.writeText(MERCHANT_ADDRESS).then(function() {
+    document.getElementById('copy-text-en').textContent = 'Copied!';
+    document.getElementById('copy-text-ar').textContent = 'تم النسخ!';
+    setTimeout(function() {
+      document.getElementById('copy-text-en').textContent = 'Copy';
+      document.getElementById('copy-text-ar').textContent = 'نسخ';
+    }, 2000);
+  }).catch(function() {
+    // Fallback: select the text
+    const el = document.getElementById('merchant-address-display');
+    if (el) {
+      const range = document.createRange();
+      range.selectNode(el);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+    }
+  });
+};
+
+// ---- Auth state listener (handles magic link redirect) ----
+supabase.auth.onAuthStateChange(function(event, session) {
+  if (session && session.user) {
+    currentUser = session.user;
+    const display = currentUser.email || currentUser.phone || 'User';
+    document.getElementById('user-email-display').textContent = display;
+    if (event === 'SIGNED_IN') {
+      showScreen('screen-plans');
+    }
+  } else if (event === 'SIGNED_OUT') {
+    currentUser = null;
+  }
+});
+
+// ---- Init: check if already logged in ----
+(async function init() {
+  showOverlay(true);
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session && session.user) {
+      currentUser = session.user;
+      const display = currentUser.email || currentUser.phone || 'User';
+      document.getElementById('user-email-display').textContent = display;
+      showScreen('screen-plans');
+    } else {
+      showScreen('screen-login');
+    }
+  } catch(e) {
+    showScreen('screen-login');
+  } finally {
+    showOverlay(false);
+  }
+})();
+</script>
+
+</body>
+</html>
