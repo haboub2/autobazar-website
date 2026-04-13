@@ -1005,11 +1005,22 @@ function showView(view){
 // call showLoader(true), and if either fetch fails the spinner never hides.
 let appReady = false;
 
+// When the user navigates back from payment.html, the browser may restore
+// this page from bfcache — make sure the spinner is always cleared.
+window.addEventListener('pageshow', function(e) {
+  if (e.persisted) showLoader(false);
+});
+
 supabase.auth.onAuthStateChange(async (event, session) => {
   // Ignore events until init() has finished its own session check
   if (!appReady) return;
 
   if (event === 'SIGNED_IN' && session?.user) {
+    // Only do a full reload if the user was on the login screen
+    // (i.e. they just signed in). If currentUser is already set
+    // we're returning from another page — no spinner needed.
+    if (currentUser) return;
+
     currentUser = session.user;
     showLoader(true);
     try {
@@ -1020,7 +1031,6 @@ supabase.auth.onAuthStateChange(async (event, session) => {
       renderDashboard(session.user, profile, txs);
       showView('dashboard');
     } catch(e) {
-      // Still show dashboard even if data fetch failed
       showView('dashboard');
     } finally {
       showLoader(false);
