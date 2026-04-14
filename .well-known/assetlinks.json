@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.elenjaz.haboub",
+      "sha256_cert_fingerprints": [
+        "26:5C:CD:15:89:6D:F7:10:3E:B0:50:C6:2E:50:79:94:4A:D9:7D:C8:39:67:91:C5:4F:2F:26:E7:3F:3D:0B:FD"
+      ]
+    }
+  }
+]
