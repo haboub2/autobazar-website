@@ -2,7 +2,7 @@
 // Shared across all pages
 
 function initLang() {
-  const saved = localStorage.getItem('lang') || 'en';
+  const saved = localStorage.getItem('lang') || 'ar';
   setLang(saved);
 }
 
@@ -35,7 +35,7 @@ function setLang(lang) {
 }
 
 function toggleLang() {
-  const current = localStorage.getItem('lang') || 'en';
+  const current = localStorage.getItem('lang') || 'ar';
   setLang(current === 'en' ? 'ar' : 'en');
 }
 
