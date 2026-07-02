@@ -8,15 +8,18 @@
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap"></noscript>
   <script>(function(){var s=localStorage.getItem('ab-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <script>(function(){var l=localStorage.getItem('lang')||'ar',d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</script>
+  <link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body class="font-inter antialiased">
 
   <!-- Lang toggle floating -->
   <div class="fixed top-4 end-4 z-50">
-    <button onclick="toggleLang()" class="lang-toggle px-3 py-1.5 bg-emerald-600 text-white rounded-full text-sm font-semibold hover:bg-emerald-700 transition shadow-lg"></button>
+    <button onclick="toggleLang()" aria-label="تبديل اللغة | Switch language" class="lang-toggle px-3 py-1.5 bg-emerald-600 text-white rounded-full text-sm font-semibold hover:bg-emerald-700 transition shadow-lg"></button>
   </div>
 
   <!-- Main Content -->
@@ -62,7 +65,7 @@
 
       <!-- Logo below card -->
       <div class="mt-8 flex items-center justify-center gap-2.5">
-        <img src="/logo.png" alt="Auto Bazar" class="w-8 h-8 rounded-xl">
+        <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar" class="w-8 h-8 rounded-xl">
         <span class="text-gray-600 text-base font-bold"><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
       </div>
     </div>
@@ -74,7 +77,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-logo">
-            <img src="/logo.png" alt="Auto Bazar">
+            <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar">
             <span><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
           </div>
           <p class="footer-desc">
@@ -95,7 +98,7 @@
           <p class="footer-heading"><span class="lang-en">Contact</span><span class="lang-ar">تواصل معنا</span></p>
           <div class="footer-links">
             <a href="mailto:support@autobazarsyria.com">support@autobazarsyria.com</a>
-            <span style="color:#475569;font-size:0.875rem;"><span class="lang-en">Operated by El-Enjaz</span><span class="lang-ar">تشغيل شركة الإنجاز</span></span>
+            <span style="color:var(--footer-text);font-size:0.875rem;"><span class="lang-en">Operated by El-Enjaz</span><span class="lang-ar">تشغيل شركة الإنجاز</span></span>
           </div>
         </div>
       </div>

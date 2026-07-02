@@ -1,37 +1,20 @@
 // Language toggle for Auto Bazar Syria
-// Shared across all pages
-
-function initLang() {
-  const saved = localStorage.getItem('lang') || 'ar';
-  setLang(saved);
-}
+// Shared across all pages.
+// Visibility of .lang-en / .lang-ar is handled purely in CSS via the
+// <html lang> attribute, which an inline head script sets before first
+// paint — so there is no layout shift and nothing to hide per-element here.
 
 function setLang(lang) {
   localStorage.setItem('lang', lang);
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-  document.querySelectorAll('.lang-en').forEach(el => {
-    el.style.display = lang === 'en' ? '' : 'none';
-  });
-  document.querySelectorAll('.lang-ar').forEach(el => {
-    el.style.display = lang === 'ar' ? '' : 'none';
-  });
-
-  // Update toggle button text - Handled by CSS to prevent duplication
-  // document.querySelectorAll('.lang-toggle').forEach(btn => {
-  //   btn.textContent = lang === 'en' ? 'عربي' : 'EN';
-  // });
-
-
-  // Update font
-  document.body.style.fontFamily = lang === 'ar'
-    ? "'Noto Sans Arabic', 'Inter', sans-serif"
-    : "'Inter', sans-serif";
-
-  document.title = lang === 'ar'
-    ? 'أوتو بازار | سيارات للبيع في سوريا - سوق السيارات الأول'
-    : 'Auto Bazar | Cars for Sale in Syria - #1 Car Marketplace';
+  // Localized title (homepage only — other pages keep their own titles)
+  if (location.pathname === '/' || location.pathname === '/index.html') {
+    document.title = lang === 'ar'
+      ? 'أوتو بازار | سيارات للبيع في سوريا - سوق السيارات الأول'
+      : 'Auto Bazar | Cars for Sale in Syria - #1 Car Marketplace';
+  }
 }
 
 function toggleLang() {
@@ -39,4 +22,6 @@ function toggleLang() {
   setLang(current === 'en' ? 'ar' : 'en');
 }
 
-document.addEventListener('DOMContentLoaded', initLang);
+// Apply saved language on load (lang/dir were already set pre-paint by the
+// inline head script; this syncs storage and the localized title).
+setLang(document.documentElement.lang === 'en' ? 'en' : 'ar');

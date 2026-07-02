@@ -11,9 +11,12 @@
   <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap"></noscript>
   <script>(function(){var s=localStorage.getItem('ab-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <script>(function(){var l=localStorage.getItem('lang')||'ar',d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</script>
+  <link rel="stylesheet" href="css/style.css?v=16">
   <style>
     /* ===== DASHBOARD CUSTOM STYLES ===== */
     :root {
@@ -295,7 +298,7 @@
     [data-theme="dark"] .login-card { background: #15151f; border-color: #2a2a38; }
 
     .login-logo { text-align: center; margin-bottom: 24px; }
-    .login-logo img { height: 48px; }
+    .login-logo img { height: 48px; width: auto; border-radius: 10px; }
     .login-title { font-size: 1.4rem; font-weight: 800; color: var(--text-primary, #111827); margin-bottom: 6px; }
     [data-theme="dark"] .login-title { color: #f9fafb; }
     .login-sub { font-size: 0.87rem; color: var(--text-secondary, #6b7280); margin-bottom: 24px; line-height: 1.5; }
@@ -473,7 +476,7 @@
   <div class="nav-inner">
     <div class="nav-logo-side">
       <a href="/" class="nav-logo">
-        <img src="/logo.png" alt="Auto Bazar">
+        <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar">
         <span class="nav-logo-text"><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
       </a>
     </div>
@@ -486,11 +489,11 @@
     <div class="nav-actions-side">
       <div class="desktop-only" style="display:flex;gap:12px;align-items:center;">
         <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
-        <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+        <button onclick="toggleLang()" aria-label="تبديل اللغة | Switch language" class="lang-toggle lang-btn"></button>
       </div>
       <div class="mobile-only">
         <button id="theme-toggle-btn-m" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
-        <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+        <button onclick="toggleLang()" aria-label="تبديل اللغة | Switch language" class="lang-toggle lang-btn"></button>
         <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
@@ -506,6 +509,8 @@
   </div>
 </header>
 
+  <main>
+
 <!-- ===== MAIN ===== -->
 <div class="dash-page" id="dash-page">
   <div class="dash-container" id="dash-container">
@@ -515,7 +520,7 @@
       <div class="login-wrap">
         <div class="login-card">
           <div class="login-logo">
-            <img src="/logo.png" alt="Auto Bazar">
+            <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar">
           </div>
           <h1 class="login-title">
             <span class="lang-en">Sign in to your account</span>
@@ -727,6 +732,8 @@
 </div>
 
 <script src="js/theme.js"></script>
+</main>
+
 <script src="js/lang.js"></script>
 
 <script>

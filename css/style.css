@@ -92,7 +92,7 @@
   --stat-border: rgba(255, 255, 255, 0.06);
 
   --footer-bg: #050508;
-  --footer-text: #475569;
+  --footer-text: #94a3b8;
 
   --input-bg: rgba(255, 255, 255, 0.05);
   --input-border: rgba(255, 255, 255, 0.1);
@@ -2205,4 +2205,73 @@ svg.w-14,
 
 .accordion-item {
   background: var(--surface) !important;
+}
+
+/* ===================== LANGUAGE VISIBILITY =====================
+   <html lang> is set before first paint by an inline head script,
+   so the inactive language never renders — no layout shift. */
+html[lang="en"] .lang-ar {
+  display: none !important;
+}
+
+html:not([lang="en"]) .lang-en {
+  display: none !important;
+}
+
+html[lang="en"] body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===================== FORM INPUT UTILITIES =====================
+   reset-password.html inputs use Tailwind-style classes that were
+   never defined (rounded-xl, border-gray-300, focus:*). These rules
+   give those inputs proper, theme-aware styling. */
+.rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+.border-gray-300 {
+  border-color: var(--input-border) !important;
+}
+
+input.w-full {
+  font-family: inherit !important;
+  font-size: 0.95rem !important;
+  background: var(--input-bg) !important;
+  color: var(--text) !important;
+  border: 1.5px solid var(--input-border) !important;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  -webkit-appearance: none;
+}
+
+input.w-full:focus {
+  border-color: var(--em-500) !important;
+  box-shadow: var(--input-focus-shadow) !important;
+}
+
+[data-theme="dark"] input.w-full {
+  background: var(--input-bg) !important;
+  border-color: var(--input-border) !important;
+  color: var(--text) !important;
+}
+
+/* Large square sizes used by confirm/reset icon circles (w-N is always
+   paired with h-N in the markup, matching the existing w-* pattern) */
+svg.w-16,
+.w-16 {
+  width: 4rem !important;
+  height: 4rem !important;
+}
+
+svg.w-20,
+.w-20 {
+  width: 5rem !important;
+  height: 5rem !important;
+}
+
+svg.w-24,
+.w-24 {
+  width: 6rem !important;
+  height: 6rem !important;
 }

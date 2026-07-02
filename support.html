@@ -19,9 +19,12 @@
   <meta property="og:image" content="https://autobazarsyria.com/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800;900&display=swap"></noscript>
   <script>(function(){var s=localStorage.getItem('ab-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <script>(function(){var l=localStorage.getItem('lang')||'ar',d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</script>
+  <link rel="stylesheet" href="css/style.css?v=16">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,7 +82,7 @@
     <div class="nav-inner">
       <div class="nav-logo-side">
         <a href="/" class="nav-logo">
-          <img src="/logo.png" alt="Auto Bazar">
+          <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar">
           <span class="nav-logo-text"><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
         </a>
       </div>
@@ -98,11 +101,11 @@
             <span class="lang-ar">حسابي</span>
           </a>
           <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
-          <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+          <button onclick="toggleLang()" aria-label="تبديل اللغة | Switch language" class="lang-toggle lang-btn"></button>
         </div>
         <div class="mobile-only">
           <button id="theme-toggle-btn-m" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
-          <button onclick="toggleLang()" class="lang-toggle lang-btn"></button>
+          <button onclick="toggleLang()" aria-label="تبديل اللغة | Switch language" class="lang-toggle lang-btn"></button>
           <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
             <span></span><span></span><span></span>
           </button>
@@ -117,6 +120,8 @@
       <a href="/dashboard"><span class="lang-en">My Account</span><span class="lang-ar">حسابي</span></a>
     </div>
   </header>
+
+  <main>
 
   <!-- Page Header -->
   <section class="bg-gradient-to-br from-emerald-600 to-emerald-800 pt-28 pb-16">
@@ -370,12 +375,14 @@
   </section>
 
       <!-- ====== FOOTER ====== -->
+  </main>
+
   <footer class="footer-wrap">
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
           <div class="footer-logo">
-            <img src="/logo.png" alt="Auto Bazar">
+            <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar">
             <span><span class="lang-en">Auto Bazar</span><span class="lang-ar">أوتو بازار</span></span>
           </div>
           <p class="footer-desc">
@@ -396,7 +403,7 @@
           <p class="footer-heading"><span class="lang-en">Contact</span><span class="lang-ar">تواصل معنا</span></p>
           <div class="footer-links">
             <a href="mailto:support@autobazarsyria.com">support@autobazarsyria.com</a>
-            <span style="color:#475569;font-size:0.875rem;"><span class="lang-en">Operated by El-Enjaz</span><span class="lang-ar">تشغيل شركة الإنجاز</span></span>
+            <span style="color:var(--footer-text);font-size:0.875rem;"><span class="lang-en">Operated by El-Enjaz</span><span class="lang-ar">تشغيل شركة الإنجاز</span></span>
           </div>
         </div>
       </div>

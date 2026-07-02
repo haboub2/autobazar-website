@@ -82,13 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, { threshold: 0.08 });
 
+  // IntersectionObserver fires immediately for elements already in the
+  // viewport, so no manual getBoundingClientRect pass is needed (it forced
+  // a synchronous reflow).
   document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-
-  // Immediately show in-viewport items
-  requestAnimationFrame(() => {
-    document.querySelectorAll('.fade-in').forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight + 60)
-        el.classList.add('visible');
-    });
-  });
 });

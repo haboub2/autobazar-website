@@ -11,7 +11,9 @@
   <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap"></noscript>
   <style>
     /* ========== RESET & BASE ========== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -522,7 +524,7 @@
 <!-- ========== NAVBAR ========== -->
 <header class="navbar">
   <a href="/" class="nav-logo">
-    <img src="/logo.png" alt="Auto Bazar">
+    <img src="/logo-small.png" width="128" height="128" alt="Auto Bazar">
     <span class="nav-logo-text">
       <span class="lang-en">Auto Bazar</span>
       <span class="lang-ar">أوتو بازار</span>
@@ -530,7 +532,7 @@
   </a>
   <div class="nav-actions">
     <button class="btn-icon" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme"></button>
-    <button class="btn-icon lang-toggle" onclick="toggleLang()"></button>
+    <button class="btn-icon lang-toggle" onclick="toggleLang()" aria-label="تبديل اللغة | Switch language"></button>
   </div>
 </header>
 
