@@ -30,7 +30,7 @@
     .dash-page {
       min-height: calc(100vh - 64px);
       background: var(--bg, #f9fafb);
-      padding: 36px 16px 60px;
+      padding: 104px 16px 60px;
       display: flex;
       align-items: flex-start;
       justify-content: center;
@@ -119,6 +119,11 @@
     .btn-signout:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
     [data-theme="dark"] .btn-signout { border-color: #2a2a38; color: #9ca3af; }
     [data-theme="dark"] .btn-signout:hover { background: rgba(220,38,38,0.15); color: #f87171; border-color: rgba(220,38,38,0.3); }
+
+    .stat-icon svg { width: 18px; height: 18px; }
+    .stat-icon-plan    { color: var(--green); }
+    .stat-icon-credits { color: #3b82f6; }
+    .stat-icon-expiry  { color: #d97706; }
 
     /* ===== STAT GRID ===== */
     .stat-grid {
@@ -453,7 +458,7 @@
     [data-theme="dark"] .dash-page-title { color: #f9fafb; }
 
     @media (max-width: 480px) {
-      .dash-page { padding: 20px 12px 48px; }
+      .dash-page { padding: 92px 12px 48px; }
       .login-card { padding: 24px 18px; }
       .cta-card { flex-direction: column; align-items: flex-start; }
       .profile-header { flex-wrap: wrap; }
@@ -536,7 +541,11 @@
           <!-- Magic link sent -->
           <div id="magic-sent" style="display:none">
             <div class="magic-box">
-              <div class="magic-emoji">📧</div>
+              <div class="magic-emoji">
+                <svg width="40" height="40" fill="none" stroke="var(--green)" stroke-width="1.3" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                </svg>
+              </div>
               <p style="font-weight:800;font-size:1rem;margin-bottom:8px">
                 <span class="lang-en">Check your email!</span>
                 <span class="lang-ar">تحقق من بريدك الإلكتروني!</span>
@@ -621,6 +630,11 @@
     <!-- ====== VIEW: DASHBOARD ====== -->
     <div id="view-dashboard" style="display:none">
 
+      <h1 class="dash-page-title">
+        <span class="lang-en">My Account</span>
+        <span class="lang-ar">حسابي</span>
+      </h1>
+
       <!-- Profile header card -->
       <div class="dash-card">
         <div class="profile-header">
@@ -645,7 +659,12 @@
       <div class="stat-grid">
         <!-- Plan -->
         <div class="stat-card highlight" id="stat-plan">
-          <div class="stat-icon stat-icon-plan">🏷️</div>
+          <div class="stat-icon stat-icon-plan">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/>
+            </svg>
+          </div>
           <div class="stat-label">
             <span class="lang-en">Current Plan</span>
             <span class="lang-ar">الخطة الحالية</span>
@@ -656,7 +675,11 @@
 
         <!-- Credits -->
         <div class="stat-card" id="stat-credits">
-          <div class="stat-icon stat-icon-credits">🎫</div>
+          <div class="stat-icon stat-icon-credits">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18M4.5 6h15a1.5 1.5 0 011.5 1.5v3.379a2.25 2.25 0 000 3.242V17.5a1.5 1.5 0 01-1.5 1.5h-15a1.5 1.5 0 01-1.5-1.5v-3.379a2.25 2.25 0 000-3.242V7.5A1.5 1.5 0 014.5 6z"/>
+            </svg>
+          </div>
           <div class="stat-label">
             <span class="lang-en">Listing Credits</span>
             <span class="lang-ar">أرصدة الإعلان</span>
@@ -670,7 +693,11 @@
 
         <!-- Expiry -->
         <div class="stat-card" id="stat-expiry">
-          <div class="stat-icon stat-icon-expiry">📅</div>
+          <div class="stat-icon stat-icon-expiry">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0V11.25A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
+            </svg>
+          </div>
           <div class="stat-label">
             <span class="lang-en">Valid Until</span>
             <span class="lang-ar">صالح حتى</span>
@@ -738,7 +765,7 @@
 
 <script>
 // ===== Language helpers =====
-function gl(){ return localStorage.getItem('lang') || 'en'; }
+function gl(){ return localStorage.getItem('lang') || 'ar'; }
 function te(en, ar){ return gl()==='ar' ? ar : en; }
 
 // ===== UI helpers =====

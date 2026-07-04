@@ -12,8 +12,8 @@ function setLang(lang) {
   // Localized title (homepage only — other pages keep their own titles)
   if (location.pathname === '/' || location.pathname === '/index.html') {
     document.title = lang === 'ar'
-      ? 'أوتو بازار | سيارات للبيع في سوريا - سوق السيارات الأول'
-      : 'Auto Bazar | Cars for Sale in Syria - #1 Car Marketplace';
+      ? 'سيارات وعقارات وتأجير سيارات في سوريا | أوتو بازار - Auto Bazar'
+      : 'Cars, Real Estate & Car Rentals in Syria | Auto Bazar';
   }
 }
 
