@@ -8,5 +8,9 @@ Disallow: /delete-account
 Disallow: /delete-account.html
 Disallow: /reset-password
 Disallow: /reset-password.html
+Disallow: /payment
+Disallow: /payment.html
+Disallow: /dashboard
+Disallow: /dashboard.html
 
 Sitemap: https://autobazarsyria.com/sitemap.xml
