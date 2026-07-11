@@ -54,7 +54,7 @@
     (function () { var s = localStorage.getItem('ab-theme'), d = window.matchMedia('(prefers-color-scheme:dark)').matches; document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light')); })();
   </script>
   <script>(function(){var l=localStorage.getItem('lang')||'ar',d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';})();</script>
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=18">
   <noscript>
     <style>
       .fade-in { opacity: 1 !important; transform: none !important; }
@@ -130,7 +130,7 @@
       </div>
 
       <h1 class="hero-title">
-        <span class="lang-en">Cars, Real Estate & Car Rentals in Syria</span><span class="lang-ar">سيارات وعقارات وتأجير سيارات في سوريا</span>
+        <span class="lang-en">Cars, Real Estate, Farms & Car Rentals in Syria</span><span class="lang-ar">سيارات وعقارات وأراضٍ ومزارع وتأجير سيارات في سوريا</span>
       </h1>
 
       <p class="hero-sub">
@@ -196,7 +196,7 @@
       </div>
 
       <div class="cards-grid">
-        <div class="feature-card fade-in" id="cars">
+        <a href="/cars" class="feature-card fade-in" id="cars">
           <div class="feature-icon">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -209,9 +209,9 @@
               price.</span>
             <span class="lang-ar">بيع وشراء سيارات جديدة ومستعملة بفلاتر الشركة والطراز والسنة والمدينة والسعر.</span>
           </p>
-        </div>
+        </a>
 
-        <div class="feature-card fade-in" id="real-estate">
+        <a href="/real-estate" class="feature-card fade-in" id="real-estate">
           <div class="feature-icon">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -220,14 +220,27 @@
           </div>
           <h3><span class="lang-en">Real Estate</span><span class="lang-ar">عقارات</span></h3>
           <p>
-            <span class="lang-en">Find apartments, houses, farms, and agricultural land for sale or rent across all
-              Syrian provinces.</span>
-            <span class="lang-ar">اعثر على شقق ومنازل ومزارع وأراضٍ زراعية للبيع أو الإيجار في جميع المحافظات
-              السورية.</span>
+            <span class="lang-en">Find apartments and houses for sale or rent across all Syrian provinces.</span>
+            <span class="lang-ar">اعثر على شقق ومنازل للبيع أو الإيجار في جميع المحافظات السورية.</span>
           </p>
-        </div>
+        </a>
 
-        <div class="feature-card fade-in" id="car-rental">
+        <a href="/farms" class="feature-card fade-in" id="farms">
+          <div class="feature-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v3.75m0 0a3 3 0 100 6 3 3 0 000-6zm0 6v8.25m-6.75-3a3 3 0 106 0m-6 0a3 3 0 116-0m6.75-2.25a3 3 0 10-6 0 3 3 0 006 0z" />
+            </svg>
+          </div>
+          <h3><span class="lang-en">Farms & Land</span><span class="lang-ar">مزارع وأراضٍ</span></h3>
+          <p>
+            <span class="lang-en">Buy or sell farms and agricultural land for sale or rent across all Syrian
+              provinces.</span>
+            <span class="lang-ar">بيع أو شراء مزارع وأراضٍ زراعية للبيع أو الإيجار في جميع المحافظات السورية.</span>
+          </p>
+        </a>
+
+        <a href="/car-rental" class="feature-card fade-in" id="car-rental">
           <div class="feature-icon">
             <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -238,6 +251,20 @@
           <p>
             <span class="lang-en">Rent a car by the day, week, or month directly from local owners and agencies.</span>
             <span class="lang-ar">أجّر سيارة باليوم أو الأسبوع أو الشهر مباشرة من أصحابها أو من شركات التأجير.</span>
+          </p>
+        </a>
+
+        <div class="feature-card fade-in" id="other">
+          <div class="feature-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+            </svg>
+          </div>
+          <h3><span class="lang-en">Other</span><span class="lang-ar">أخرى</span></h3>
+          <p>
+            <span class="lang-en">Motorcycles, trucks, equipment, and more categories coming soon to Auto Bazar.</span>
+            <span class="lang-ar">دراجات نارية وشاحنات ومعدات والمزيد من الأقسام قريباً على أوتو بازار.</span>
           </p>
         </div>
       </div>
@@ -562,6 +589,15 @@
           </p>
         </div>
         <div>
+          <p class="footer-heading"><span class="lang-en">Categories</span><span class="lang-ar">الأقسام</span></p>
+          <div class="footer-links">
+            <a href="/cars"><span class="lang-en">Cars</span><span class="lang-ar">سيارات</span></a>
+            <a href="/real-estate"><span class="lang-en">Real Estate</span><span class="lang-ar">عقارات</span></a>
+            <a href="/farms"><span class="lang-en">Farms & Land</span><span class="lang-ar">مزارع وأراضٍ</span></a>
+            <a href="/car-rental"><span class="lang-en">Car Rental</span><span class="lang-ar">تأجير سيارات</span></a>
+          </div>
+        </div>
+        <div>
           <p class="footer-heading"><span class="lang-en">Pages</span><span class="lang-ar">الصفحات</span></p>
           <div class="footer-links">
             <a href="/"><span class="lang-en">Home</span><span class="lang-ar">الرئيسية</span></a>
@@ -609,9 +645,10 @@
         "@type": "ItemList",
         "name": "أقسام أوتو بازار",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "سيارات للبيع والشراء", "url": "https://autobazarsyria.com/#cars" },
-          { "@type": "ListItem", "position": 2, "name": "عقارات، أراضٍ ومزارع", "url": "https://autobazarsyria.com/#real-estate" },
-          { "@type": "ListItem", "position": 3, "name": "تأجير سيارات", "url": "https://autobazarsyria.com/#car-rental" }
+          { "@type": "ListItem", "position": 1, "name": "سيارات للبيع والشراء", "url": "https://autobazarsyria.com/cars" },
+          { "@type": "ListItem", "position": 2, "name": "عقارات للبيع والإيجار", "url": "https://autobazarsyria.com/real-estate" },
+          { "@type": "ListItem", "position": 3, "name": "مزارع وأراضٍ زراعية", "url": "https://autobazarsyria.com/farms" },
+          { "@type": "ListItem", "position": 4, "name": "تأجير سيارات", "url": "https://autobazarsyria.com/car-rental" }
         ]
       },
       {
