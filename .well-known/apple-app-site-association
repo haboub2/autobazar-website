@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "67L3V6QU83.com.elenjaz.haboub",
+        "paths": ["/cars/*", "/parts/*", "/listing/*", "/real_estate/*", "/car_rental/*", "/daily_rental/*"]
+      }
+    ]
+  }
+}
