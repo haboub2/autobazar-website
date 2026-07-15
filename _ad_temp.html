@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=Noto+Sans+Arabic:wght@500;700;800;900&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #0a0e17;
+    font-family: 'Noto Sans Arabic', 'Inter', sans-serif;
+    direction: rtl;
+    position: relative;
+  }
+  .aurora {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+    z-index: 0;
+  }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 44px 52px 20px;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand img { border-radius: 16px; display: block; }
+  .brand-name { color: #fff; font-weight: 900; font-size: 28px; line-height: 1.15; }
+  .brand-sub { color: #7c8aa5; font-size: 14px; letter-spacing: 0.14em; font-weight: 700; }
+  .badge {
+    background: rgba(16,185,129,0.14);
+    border: 1px solid rgba(16,185,129,0.45);
+    color: #6ee7b7;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 22px;
+    border-radius: 100px;
+  }
+  .grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    padding: 8px 52px;
+  }
+  .tile { min-height: 0; min-width: 0; }
+  .tile { position: relative; border-radius: 22px; overflow: hidden; background: #1e293b; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tile-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.05) 55%, rgba(0,0,0,0) 70%);
+  }
+  .tile-label { position: absolute; bottom: 0; right: 0; left: 0; padding: 0 24px 20px; text-align: right; }
+  .tile-label .ar { color: #fff; font-weight: 800; font-size: 26px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+  .tile-label .en { color: #a7f3d0; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; }
+  .tile-cta {
+    background: linear-gradient(135deg, #059669, #047857);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; text-align: center; padding: 24px;
+  }
+  .tile-cta img { border-radius: 18px; width: 72px; height: 72px; }
+  .tile-cta .cta-title { color: #fff; font-weight: 900; font-size: 27px; }
+  .tile-cta .cta-sub { color: #d1fae5; font-size: 15px; font-weight: 700; }
+  .footer { padding: 28px 52px 40px; text-align: center; }
+  .footer .headline { color: #fff; font-weight: 900; font-size: 32px; margin-bottom: 10px; }
+  .footer .sub { color: #7c8aa5; font-size: 17px; font-weight: 500; }
+  .footer .sub b { color: #6ee7b7; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="aurora" style="width:500px;height:500px;background:#059669;top:-150px;right:0px;"></div>
+  <div class="aurora" style="width:450px;height:450px;background:#b8972a;bottom:-120px;left:0px;"></div>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="brand">
+        <img src="https://autobazarsyria.com/logo-small.png" width="60" height="60" alt="Auto Bazar">
+        <div>
+          <div class="brand-name">أوتو بازار</div>
+          <div class="brand-sub">AUTO BAZAR</div>
+        </div>
+      </div>
+      <div class="badge">متاح الآن في سوريا</div>
+    </div>
+
+    <div class="grid">
+      <div class="tile">
+        <img src="https://res.cloudinary.com/domxt8bbd/image/upload/v1783039382/autobazar/cars/3a944f351b7fb8adb58a93536007017dbdbc79e63a04a62c19621cc32f2b7470.jpg" alt="سيارات">
+        <div class="tile-overlay"></div>
+        <div class="tile-label"><div class="ar">سيارات</div><div class="en">Cars</div></div>
+      </div>
+      <div class="tile">
+        <img src="https://res.cloudinary.com/domxt8bbd/image/upload/v1783185018/autobazar/real_estate/84bbb01db37eb4d1c6fa055dc6c6f03a07eb10bdbd06ad08f53607634f3055d8.jpg" alt="عقارات">
+        <div class="tile-overlay"></div>
+        <div class="tile-label"><div class="ar">عقارات</div><div class="en">Real Estate</div></div>
+      </div>
+      <div class="tile">
+        <img src="https://res.cloudinary.com/domxt8bbd/image/upload/v1782424114/autobazar/car_rental/4e03f197337ced54797c77e51f57d3612a0860e5c0172e976d8536a3aef3271c.jpg" alt="تأجير سيارات">
+        <div class="tile-overlay"></div>
+        <div class="tile-label"><div class="ar">تأجير سيارات</div><div class="en">Car Rental</div></div>
+      </div>
+      <div class="tile tile-cta">
+        <img src="https://autobazarsyria.com/logo-small.png" alt="Auto Bazar">
+        <div class="cta-title">حمّل التطبيق الآن</div>
+        <div class="cta-sub">App Store · Google Play</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="headline">سيارات · عقارات · تأجير سيارات</div>
+      <div class="sub">في جميع المحافظات السورية، بدون وسطاء — <b>autobazarsyria.com</b></div>
+    </div>
+  </div>
+</body>
+</html>
